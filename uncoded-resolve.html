@@ -24,7 +24,7 @@
 </header>
 
 <main id="main" class="wrap">
-  <section class="cs-hero">
+  <section class="cs-hero" id="tools">
     <p class="eyebrow">Case study 01 · Simultaneous-Turn Tactics UI</p>
     <h1 class="h1">Uncoded Resolve: a tactics game you can read at a glance</h1>
     <p class="lede">In Uncoded Resolve, you and the enemy pick your moves at the same time, then watch them play out together. Every turn is a read on your opponent, so the screen has to show a lot at once without burying the fight.</p>
@@ -35,6 +35,15 @@
       <div><dt>Outcome</dt><dd>Playable gold master for Windows and Mac, with a trailer and press kit</dd></div>
     </dl>
     <figure class="cover"><img src="assets/img/ur/cover.webp" alt="Uncoded Resolve key art: the game's title logo over a cyberpunk scene" width="1800" height="1012"></figure>
+  </section>
+
+  <section class="cs-section" id="engineering">
+    <div class="prose">
+      <span class="num">Under the hood</span>
+      <h2 class="h2">Architecture, tests, and readable enemy AI</h2>
+      <p>I specified the game's C# architecture, subsystem requirements, and acceptance criteria, then used coding agents to implement against those specs. I gated changes with 307 automated Unity Test Framework tests across 39 suites.</p>
+      <p>For enemy decisions, I designed a hybrid of per-personality utility rules and a PPO reinforcement-learning policy trained with PyTorch, exported to ONNX for inference in Unity. The goal was an opponent that played well while remaining understandable to the player.</p>
+    </div>
   </section>
 
   <section class="cs-section">
@@ -49,7 +58,7 @@
   <section class="cs-section">
     <div class="prose">
       <span class="num">01 · Prototype</span>
-      <h2 class="h2">Prove the fun before drawing anything</h2>
+      <h2 class="h2" id="prototype">Prove the fun before drawing anything</h2>
       <p>By week 3 I had combat running as a text-only program in the terminal. That told me the simultaneous-turn idea was fun before I spent a single hour on art. From there I moved it into Unity with capsules as stand-ins, then kept adding art in stages.</p>
     </div>
     <div class="steps">
@@ -144,7 +153,7 @@
   <section class="cs-section">
     <div class="prose">
       <span class="num">05 · Final build</span>
-      <h2 class="h2">The finished game</h2>
+      <h2 class="h2" id="finished-game">The finished game</h2>
       <p>The gold master has two playable levels, an exploration mode with objectives, terminals, a minimap, and branching persuasion dialogue, plus save/load and level select. Getting simultaneous actions to feel responsive took about 40 animation variants.</p>
     </div>
     <figure class="fig dark narrow reveal"><img src="assets/img/ur/combat.webp" alt="Animated combat: characters lock in actions and resolve them together" loading="lazy" width="568" height="320"><figcaption><b>Combat.</b> Both sides lock in, then their actions play out together.</figcaption></figure>

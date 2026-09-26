@@ -41,10 +41,19 @@
     </div>
   </section>
 
+  <section class="cs-section" id="engineering">
+    <div class="prose">
+      <span class="num">How we built it</span>
+      <h2 class="h2">One receipt, mobile and web</h2>
+      <p>I built interface components in TypeScript with React Native and Expo, using Tailwind CSS and NativeWind for styling. The web experience used React and Vite and was deployed with Vercel. Supabase handled authentication and SQL-backed data.</p>
+      <p>For receipt scanning, I integrated Google Cloud Vision for OCR and the OpenAI API for item parsing. I also built a deterministic parser that flags arithmetic mismatches instead of quietly returning a bad split. Our seven-person team used Git and GitHub to collaborate, with GitHub Actions running frontend checks on pull requests; I worked in VS Code.</p>
+    </div>
+  </section>
+
   <section class="cs-section">
     <div class="prose">
       <span class="num">01 · Flow</span>
-      <h2 class="h2">Sketch the whole journey first</h2>
+      <h2 class="h2" id="figma-flow">Sketch the whole journey first</h2>
       <p>There are two kinds of users: the host, who paid and uploads the receipt, and everyone else, who just wants to claim their items and see what they owe. Before opening Figma I sketched rough wireframes of the core screens, then mapped both journeys end to end in a user flow diagram.</p>
     </div>
     <figure class="fig plain reveal"><img src="assets/img/ez/sketch.webp" alt="Rough wireframe sketches of the app's screens connected by arrows, from Start to the receipt split" loading="lazy" width="1600" height="838"><figcaption><b>First sketches.</b> Upload, take a photo, item list, and the split, drawn roughly to settle the order of screens.</figcaption></figure>

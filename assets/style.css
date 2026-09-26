@@ -406,6 +406,17 @@ button { font: inherit; color: inherit; }
 .about li span:last-child { color: var(--muted); text-align: right; }
 .about .prose p { font-size: 16px; }
 
+.proof-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.proof-card { scroll-margin-top: 96px; padding: 24px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+.proof-card h3 { margin: 10px 0; font-size: 22px; line-height: 1.2; }
+.proof-image { width: 100%; height: auto; margin: 4px 0 14px; border-radius: 10px; }
+.proof-card p { margin: 0 0 18px; color: var(--muted); font-size: 15px; line-height: 1.6; }
+.proof-label { color: var(--accent); font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.proof-tools { display: block; font-size: 12px; font-weight: 600; color: var(--text); }
+.proof-links { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 18px; font-size: 13px; font-weight: 600; }
+.proof-links a { color: var(--accent); }
+.cs-section[id], .cs-hero[id], h2[id] { scroll-margin-top: 96px; }
+
 /* ---------- Case study ---------- */
 .cs-hero { padding: 72px 0 36px; }
 .cs-hero h1 { max-width: 18ch; }
@@ -510,6 +521,7 @@ blockquote.q footer { margin-top: 12px; font-size: 13px; font-weight: 400; color
 
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
+  .proof-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .meta { grid-template-columns: 1fr 1fr; }
   .steps, .grid-3, .quotes, .stats { grid-template-columns: 1fr 1fr; }
   .about { grid-template-columns: 1fr; gap: 32px; }
@@ -518,6 +530,7 @@ blockquote.q footer { margin-top: 12px; font-size: 13px; font-weight: 400; color
   .tile-ez, .tile-hd, .tile-yt, .tile-wc { grid-column: span 1; grid-row: span 2; }
 }
 @media (max-width: 600px) {
+  .proof-grid { grid-template-columns: 1fr; }
   body { font-size: 16px; }
   .wrap { padding-left: 16px; padding-right: 16px; }
   .nav { gap: 12px; font-size: 14px; }

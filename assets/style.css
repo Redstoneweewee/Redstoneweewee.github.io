@@ -546,6 +546,7 @@ blockquote.q footer { margin-top: 12px; font-size: 13px; font-weight: 400; color
   .bento { grid-template-columns: 1fr 1fr; }
   .tile-ur { grid-column: span 2; grid-row: span 2; }
   .tile-ez, .tile-hd, .tile-yt, .tile-wc { grid-column: span 1; grid-row: span 2; }
+  .tile-wc { grid-column: span 2; } /* last tile alone on its row: fill the width instead of leaving a gap */
 }
 @media (max-width: 600px) {
   .proof-grid { grid-template-columns: 1fr; }

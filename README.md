@@ -15,7 +15,9 @@ Publish: push to a public repo named `Redstoneweewee.github.io`, then Settings â
 
 ## Ask me (the chat)
 
-`assets/agent.js` holds every answer, written by hand, plus the keywords that route a question to it. It runs entirely in the browser: no API, no key, nothing sent anywhere. To add a topic, add an entry to `KB` with `q`, `keys`, and `a`.
+Every answer lives in `assets/answers.txt` as `"Question"="Answer"`, written by hand (the notes at the top of the file explain paragraphs, bold, lists, and the special `[more]`, `[fallback]`, and `[fourth wall]` entries). `assets/agent.js` loads that file and matches a visitor's question to the closest answer. It runs entirely in the browser: no API, no key, nothing sent anywhere, and after enough questions it says so itself.
+
+To add a topic, add a line to `answers.txt`; it's matched on the question's own words. For better matching, case-study cards, pictures, or links, add an entry under the same question in `META` in `agent.js`.
 
 ## Credit
 

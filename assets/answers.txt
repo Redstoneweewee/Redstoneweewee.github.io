@@ -1,0 +1,152 @@
+# Ask me: every answer the chat on the home page can give. Written by Leifeng, not generated.
+#
+# Format:  "Question"="Answer"
+#   - The question is the button text, and it's also matched against what visitors type.
+#   - A blank line inside an answer starts a new paragraph. A single line break stays a line break.
+#   - **double asterisks** make text bold. Lines starting "1. ", "2. " ... become a numbered list.
+#   - Write \" for a quote mark inside a question or answer.
+#   - Lines starting with # are comments (so do not start a line of an answer with #).
+#
+# Special questions:
+#   "[more] <question>"  the "Tell me more" follow-up for that question
+#   "[fallback]"         the reply when nothing matches
+#   "[fourth wall]"      shown once the visitor has asked a lot of questions
+#
+# A new question here works on its own (it's matched on its own words). To add extra matching
+# words, case-study cards, pictures, or links, add an entry under the same question in META in agent.js.
+
+"Who are you?"="I'm Leifeng, a third-year Computer Science student at UC Santa Barbara who does design and engineering! I design interfaces, icons, and visual systems, and I can build them too.
+
+I started designing for real people as a kid, building Minecraft maps for my best friend. That grew into Minecraft addons with **3.6M+ downloads** and a YouTube channel with **64K+ subscribers**. These days I also work on the Daily Nexus's iOS and Android apps and co-founded a startup, Hedron³."
+
+"Show me your best work"="Here are my four case studies. Each one keeps the messy mistakes in: the mockups, the feedback, and what I changed because of it.
+
+If you only read one section, read the tutorial part of Uncoded Resolve or the tooltip UX in Warden Creations."
+
+"Tell me about Uncoded Resolve"="Uncoded Resolve is a tactics game where you and the enemy pick your moves at the same time, then watch them play out together. I designed it by myself: the game design, HUD, 2D art, icons, logos, and a color system where every side owns one color.
+
+I proved the combat was fun as a text-only terminal program before drawing anything, then took the combat HUD through several rounds of mockups, from bounding boxes to annotated versions. It shipped as a playable gold master for Windows and Mac, with a trailer and press kit."
+
+"[more] Tell me about Uncoded Resolve"="The part I learned the most from was the tutorial. Tips closed only with a small X, nobody noticed it, and players got stuck on the screens meant to help them. Now every tip has a labeled \"SPACE Continue\" button, and the tutorial blocks everything except the action it's teaching.
+
+Credit where it's due: the 3D character models and animations were commissioned from Filbyte under my art direction, and a friend helped build levels 2 and 3."
+
+"How did you design the color system?"="In Uncoded Resolve, color carries meaning, not decoration. Every side owns a color and it shows up everywhere that side appears: health bars, tiles, icons, and dialogue. **Purple** is the Black Ledger, the player's faction, so most of the UI is purple. **Blue** is robots and AI. **Red** is Marek and **cream** is Evelyn Voss.
+
+The faction symbols follow the same idea. The Black Ledger mark is sharp and full of arrows because they sabotage and command. Aerodyne's is rounded outside to look friendly and rigid inside, because underneath it's still a machine."
+
+"Tell me about Eezy Receipt"="Eezy Receipt splits a group receipt. You scan it, everyone claims their own items from their phone, and it tracks who has paid. I designed every screen, flow, and the logo for our team of 7, and I was the Scrum Master.
+
+Our first version made you drag items onto people. When we surveyed testers on v2.0.0, **3 of 5 couldn't tell how to assign items**. So I added tap-to-select with a \"Claim N items\" button, and split the app into separate Assign and Edit modes."
+
+"Tell me about Hedron³"="Hedron³ is the startup I co-founded with one partner. We're building a desktop app that turns a shipment's scanned contracts into export paperwork, with AI-assisted extraction and a required human review step.
+
+I designed the logo, the business card, and the app's workflow: five numbered steps that unlock in order, so nobody has to learn a new tool before they can use it. My co-founder built most of our marketing site, hedron3.com. I cleaned it up, made it look better, and polished its browser-only demo of the workflow."
+
+"[more] Tell me about Hedron³"="The step I cared most about is human review. Extracted data lands in a workbook where yellow cells need checking, red issues block generation, and amber issues need a look. The AI never sends a document on its own."
+
+"What's a design mistake you learned from?"="My favorite one: in Uncoded Resolve's first playable build, the tutorial tips closed only with a small X in the corner. I thought it looked clean. Nobody knew to press it, so players got stuck on the very screens meant to help them.
+
+Now every tip has a labeled \"SPACE Continue\" button, and the tutorial blocks every action except the one it's teaching. My rule since then: never hide a control behind an unlabeled X, and build the tutorial alongside each mechanic, not in the last week.
+
+It's also why this chat shows its starter questions up front instead of hiding them behind a button."
+
+"What's a project that flopped?"="Two of my Minecraft add-ons. In late 2021, during Mojang's Mob Vote, I rushed out a Copper Golem add-on, and when Mojang announced Armor Trims I rushed out an Armor Trims add-on to ride the news. Both underperformed everything else on the channel, and players uninstalled them quickly.
+
+Chasing a trend meant building for curiosity, not utility. The Copper Golem had about 10 minutes of novel behavior and nothing for survival progression. Fortify and Simple Arsenal worked because they filled a permanent gap in Minecraft's combat. My rule since then: **never build for hype; build deep systems players actually depend on.**"
+
+"How do you use feedback?"="I haven't run a formal usability study yet, but I've always built feedback into what I make.
+
+For my Minecraft add-ons, my 6,000-member Discord and more than 1,100 YouTube comment replies were my usability lab. A Discord suggestion showed me Fortify had too many late-game sets and not enough early ones. Players confused by the controls (Bedrock add-ons can't add custom keybinds) shaped how I wrote tutorial text and tooltip verbs later.
+
+On Eezy Receipt we surveyed testers on v2.0.0: 3 of 5 couldn't tell how to assign items, and average confidence in finishing a split without help was 2.8 out of 5. That survey is what drove our redesign.
+
+Learning proper research methods from experienced researchers is a big reason I want a UX internship."
+
+"How do you handle accessibility?"="A few examples. In Eezy Receipt, money never relies on red and green alone: every amount carries a + or − sign and a plain label like \"You Owe\" or \"You Are Owed,\" so red-green colorblind users read it correctly. Colors are named theme tokens, so light and dark mode stay readable everywhere.
+
+In Uncoded Resolve, status effects show a tooltip on hover, so players never have to memorize what an icon means."
+
+"What's your design process?"="Roughly five steps:
+
+1. **Prove the core idea as cheaply as possible.** Uncoded Resolve's combat started as a text-only program in the terminal.
+2. **Sketch the whole flow** before any polished screen.
+3. **Mock up, annotate, and iterate.** The combat HUD went from bounding boxes to annotated versions.
+4. **Put it in front of people** and watch where they get stuck.
+5. **Fix the cause, not the symptom.** Testers couldn't find the drag, so we added a visible button instead of a hint."
+
+"What tools do you use?"="**Design:** Figma, Photoshop, Paint.net, Canva.
+**3D and motion:** Blockbench, DaVinci Resolve (10 years of video editing).
+**Front end:** HTML, CSS, JavaScript, TypeScript, React Native.
+**Native and games:** Swift, Kotlin, Unity and C#."
+
+"Can you code?"="Yes. I'm a CS major with a 4.0 GPA, and I work as a mobile engineer on the Daily Nexus app in Swift and Kotlin. On Eezy Receipt I built the shared React Native component library and the light and dark theming. I also hand-wrote 7,000+ lines of C# for my puzzle game, Cable Conundrum.
+
+So when I design something, I usually know what it will cost to build, which makes me a useful partner for engineers."
+
+"How do you use AI?"="I use AI coding agents like Claude Code a lot, as tools I direct. For Uncoded Resolve I wrote the specifications and architecture, and agents wrote the code, gated by 300+ automated tests.
+
+I'm careful to say what AI made. The game's character concept art was AI-generated, so it isn't in this portfolio, and the Hostile Analysis card was hand-edited over an AI reference image. This site's code was written with Claude Code too."
+
+"Is this chat an AI?"="Nope, and I'd rather be upfront about it: this isn't an AI. I wrote every answer myself in a plain text file, and the page just matches your question to the closest one. It runs entirely in your browser, so nothing you type is sent anywhere, and it can't make up facts about me.
+
+The idea of a portfolio you can talk to comes from Studio Nikita by Nikita Rochiramani. Her site is worth a look."
+
+"Show me your visual design"="Most of my visual work lives in two places: game UI and YouTube thumbnails.
+
+For my Minecraft add-on videos I designed every thumbnail: one readable title and the add-on's items front and center. Across six videos they drew **8.9% to 17.7% click-through on 1.67M impressions**. The best, Unbreakable Armor, hit 17.7%."
+
+"Tell me about your YouTube and Minecraft work"="Most of my design instincts come from here. In 2017 my best friend Devin Leung and I started building custom Minecraft challenge maps and co-editing videos of our playthroughs. In June 2021 I switched to Minecraft Bedrock add-ons under the name Warden Creations.
+
+The channel has **64.7K subscribers** and 1.7M views, and my add-ons have **3.6M+ downloads**. I ran a 6,000-member Discord, replied to more than 1,100 comments, and kept a running list of player suggestions that shaped every update. That's where I learned to design for people who will never read the manual."
+
+"Tell me about Warden Creations"="Warden Creations is the Minecraft add-on studio and channel I ran from 2021 to 2025. Across 11 add-ons it reached **3.6M+ downloads**, **64.7K subscribers**, and a 6,000-member Discord.
+
+The core UX challenge was in-game readability: instead of forcing players to keep an external wiki open, I built a custom tooltip system with Unicode glyph icons so weapon stats, cooldowns, and rarity tiers were readable right inside the inventory."
+
+"[more] Tell me about Warden Creations"="It started with Minecraft Fortify, an overhaul of Minecraft's stale armor and weapon progression that became my breakout project. Simple Arsenal pushed combat further with modular weapons and custom crafting benches. When it dropped, CurseForge downloads jumped from a 200-a-day baseline to **39,267 in 2 days**.
+
+Running 11 live add-ons plus videos was like running a live-service game studio alone, so as my UCSB studies picked up I wound down add-on work in 2025 and moved that energy into software and product: the Daily Nexus apps, Uncoded Resolve, Eezy Receipt, and Hedron³."
+
+"How did you design the in-game tooltips?"="Minecraft Bedrock's item tooltips only show a name and durability, but my weapons had windups, cooldowns, area attacks, and status effects like poison and stun. Players shouldn't have to alt-tab to a wiki to learn what a sword does.
+
+So I overrode Minecraft's font sheet with custom Unicode private-use glyphs, which let me put 16×16 pixel-art icons for damage, windup, cooldown, and effects straight into the item description, next to color-coded rarity tiers. In play sessions, players stopped asking \"what does this weapon do?\" and started asking which weapon counters which mob."
+
+"Do you do motion design?"="Yes. I have 10 years of video editing experience, including 5.5+ years in DaVinci Resolve with Fusion and Fairlight. It started with co-editing Minecraft videos with my best friend in 2017, and I cut the Uncoded Resolve trailer myself.
+
+In the game itself, getting simultaneous actions to feel responsive took about 40 animation variants."
+
+"How do you work with a team?"="On Eezy Receipt I was the Scrum Master for a team of 7: I ran three sprints of planning, standups, and retros, owned the Kanban board, and was also the top contributor to the code. At Hedron³ it's just me and my co-founder, so we split everything.
+
+Being an engineer myself helps. I can talk through tradeoffs with developers, and I annotate mockups so the intent survives the handoff."
+
+"What would you do differently?"="Four things I've changed:
+
+1. **Onboarding is core product work.** I left Uncoded Resolve's tutorial and sound for the last two weeks, and both suffered.
+2. **Test discoverability before building the interaction.** A five-minute test with a sketch would have caught Eezy Receipt's drag problem weeks earlier.
+3. **Take one big risk per project.** I spent three weeks on a reinforcement-learning enemy AI when a simpler one would have left time for playtesting.
+4. **Build for utility, not hype.** My rushed trend add-ons (Copper Golem, Armor Trims) flopped, while the deep combat systems became my biggest hits."
+
+"Why UX design?"="The part I've always liked most is watching someone use a thing I made without needing help. I started by designing Minecraft maps around what would surprise my best friend next, and later I read over a thousand comments about my add-ons.
+
+I'm an engineer too, but I want to get better at the part that comes before the code: understanding people."
+
+"Are you looking for an internship?"="Yes! I'm looking for **Summer 2027** internships in UX design and UX engineering.
+
+I'm available full time from June 14 to September 17, 2027, happy to relocate, and I'm a U.S. citizen, so no sponsorship is needed. I expect to graduate from UCSB in 2028."
+
+"How can I contact you?"="The best way is email: **leifengchen123@gmail.com**. You can also find me on LinkedIn and GitHub."
+
+"Where do you go to school?"="I'm a third-year Computer Science student at UC Santa Barbara with a 4.0 GPA and Dean's Honors every eligible quarter. Uncoded Resolve started in a 10-week game development course, and Eezy Receipt came out of our software engineering project course."
+
+"Hi!"="Hi! Thanks for stopping by. Ask me about my case studies, my process, or the mistakes I learned from."
+
+"Thanks!"="Thanks for reading! If you'd like to talk, my email is leifengchen123@gmail.com."
+
+"What's the weather like?"="I can't check the weather, but it's probably sunny in Santa Barbara. Anything I can tell you about my work instead?"
+
+"[fallback]"="I don't have an answer written for that one. I only know about my own work, and I'd rather say nothing than guess. Try one of these, or email me and I'll answer myself."
+
+"[fourth wall]"="Okay, you've asked a lot of questions, so I should come clean: I'm not actually an AI chatbot. Every answer here is hardcoded. I wrote them all in a text file, and this page just matches what you type to the closest one. A real AI felt unnecessary for a portfolio, and this way it can't make things up about me.
+
+But I, Leifeng, am very much real. If you still have questions, I'd love to answer them myself: email me at **leifengchen123@gmail.com** or message me on LinkedIn."

@@ -386,17 +386,17 @@
     });
   }
 
-  function addUser(text) {
+  function addUser(text, instant) {
     var m = el("div", "msg user"); var b = el("div", "bubble"); b.textContent = text;
     m.appendChild(b); thread.appendChild(m);
-    scrollDown(true);
+    if (!instant) scrollDown(true);
   }
 
-  function streamBotChars(b, paragraphs, onComplete) {
+  function streamBotChars(b, paragraphs, onComplete, instant) {
     var staging = document.createElement("div");
     staging.innerHTML = paragraphs.map(block).join("");
 
-    if (reduce) {
+    if (reduce || instant) {
       b.innerHTML = staging.innerHTML;
       if (onComplete) onComplete();
       return;
@@ -547,15 +547,16 @@
     step();
   }
 
-  function addBot(entry, paragraphs) {
+  // instant: render the finished answer at once, with no typing or scrolling (used to replay the thread).
+  function addBot(entry, paragraphs, instant) {
     var m = el("div", "msg bot");
     m.appendChild(el("img", "avatar")).setAttribute("src", "assets/img/me.webp");
     m.firstChild.alt = "";
     var b = el("div", "bubble", '<span class="dots" aria-label="Typing"><i></i><i></i><i></i></span>');
-    m.appendChild(b); thread.appendChild(m); scrollDown(true);
+    m.appendChild(b); thread.appendChild(m);
+    if (!instant) scrollDown(true);
 
-    var thinkDelay = reduce ? 0 : 300;
-    setTimeout(function () {
+    function reply() {
       streamBotChars(b, paragraphs, function () {
         b.appendChild(attachments(entry));
         var follow = (entry.more && last !== entry) ? ["Tell me more"] : [];
@@ -563,27 +564,35 @@
         if (follow.length) thread.appendChild(chipButtons(follow.slice(0, 3), "followups"));
         busy = false;
         send.disabled = !input.value.trim();
-        scrollDown(true);
-      });
-    }, thinkDelay);
+        if (!instant) scrollDown(true);
+      }, instant);
+    }
+    if (instant) reply();
+    else setTimeout(reply, reduce ? 0 : 300);
   }
 
-  function ask(text) {
+  // The thread is kept for this tab so a visitor who opens a case study can come back to it.
+  var LOG_KEY = "portfolio_chat";
+  var log = [];
+  function saveLog() { try { sessionStorage.setItem(LOG_KEY, JSON.stringify(log)); } catch (e) {} }
+
+  function ask(text, instant) {
     text = text.trim();
     if (!text || busy) return;
     busy = true; send.disabled = true; panel.hidden = true; guideBtn.setAttribute("aria-expanded", "false");
     if (intro && !intro.hidden) { intro.hidden = true; document.body.classList.add("chatting"); }
     document.querySelectorAll(".followups").forEach(function (f) { f.remove(); });
-    addUser(text);
+    log.push(text); saveLog();
+    addUser(text, instant);
 
     var isMore = /^(tell me more|more|go on|continue|and\??|keep going|elaborate)\b/i.test(text);
     if (isMore && last && last.more) {
       var entry = last; last = null; // so the "Tell me more" chip does not repeat
-      addBot({ follow: entry.follow, cards: null, q: entry.q }, entry.more);
+      addBot({ follow: entry.follow, cards: null, q: entry.q }, entry.more, instant);
       last = entry; return;
     }
     var hit = match(text) || FALLBACK;
-    addBot(hit, hit.a);
+    addBot(hit, hit.a, instant);
     last = hit;
   }
 
@@ -604,8 +613,19 @@
   document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !panel.hidden) { panel.hidden = true; guideBtn.setAttribute("aria-expanded", "false"); guideBtn.focus(); } });
 
   // Deep link: index.html?q=... asks straight away (used by the "Ask me" buttons on other pages).
-  try {
-    var q = new URLSearchParams(location.search).get("q");
-    if (q) ask(q.slice(0, 200));
-  } catch (e) {}
+  // Otherwise, a visitor coming back (back chevron, browser back, reload) gets their thread replayed as it was.
+  var q = null, saved = [];
+  try { q = new URLSearchParams(location.search).get("q"); } catch (e) {}
+  if (!q && window.portfolioReturning) {
+    try { saved = JSON.parse(sessionStorage.getItem(LOG_KEY)) || []; } catch (e) {}
+  }
+  saveLog();
+  if (q) ask(q.slice(0, 200));
+  else if (saved.length) {
+    saved.forEach(function (t) { if (typeof t === "string") ask(t.slice(0, 200), true); });
+    // site.js restores the saved scroll position on load; without one, land on the latest answer.
+    var savedY = null;
+    try { savedY = sessionStorage.getItem("portfolio_scroll:./"); } catch (e) {}
+    if (!(parseInt(savedY, 10) > 0)) scrollDown(false);
+  }
 })();

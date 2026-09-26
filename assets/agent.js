@@ -598,30 +598,32 @@
   });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !panel.hidden) { panel.hidden = true; guideBtn.setAttribute("aria-expanded", "false"); guideBtn.focus(); } });
 
+  // The thread survives moving around the site (Grid, case studies, back and forth) and is replayed
+  // on arrival. Reloading this page starts a fresh chat, and so does closing the tab.
   // Deep link: index.html?q=... asks straight away (used by the "Ask me" buttons on other pages).
-  // Otherwise, a visitor coming back (back chevron, browser back, reload) gets their thread replayed as it was.
-  var q = null, saved = [];
+  var q = null, saved = [], navType = "";
   try { q = new URLSearchParams(location.search).get("q"); } catch (e) {}
-  if (!q && window.portfolioReturning) {
+  try { navType = performance.getEntriesByType("navigation")[0].type; } catch (e) {}
+  if (navType !== "reload") {
     try { saved = JSON.parse(sessionStorage.getItem(LOG_KEY)) || []; } catch (e) {}
   }
   saveLog();
 
   function start() {
     ready = true;
-    if (q) ask(q.slice(0, 200));
-    else if (saved.length) {
+    if (saved.length) {
       saved.forEach(function (t) { if (typeof t === "string") ask(t.slice(0, 200), true); });
-      // Back where the visitor left off, or on the latest answer if nothing was saved.
+      // Coming back (back chevron or browser back): where the visitor left off. Otherwise: the latest answer.
       var savedY = null;
       try { savedY = parseInt(sessionStorage.getItem("portfolio_scroll:./"), 10); } catch (e) {}
-      if (savedY > 0) window.scrollTo({ top: savedY, behavior: "instant" });
+      if (window.portfolioReturning && savedY > 0 && !q) window.scrollTo({ top: savedY, behavior: "instant" });
       else scrollDown(false);
     }
+    if (q) ask(q.slice(0, 200));
     if (waiting) { var t = waiting; waiting = null; ask(t); }
   }
 
-  fetch("assets/answers.txt?v=20260926a")
+  fetch("assets/answers.txt?v=20260927a")
     .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
     .then(function (txt) { buildKB(parseAnswers(txt)); })
     .catch(function () { FALLBACK.a = ["My answers didn't load, sorry. Try refreshing, or email me and I'll answer myself."]; })

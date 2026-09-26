@@ -29,7 +29,7 @@ I proved the combat was fun as a text-only terminal program before drawing anyth
 
 "[more] Tell me about Uncoded Resolve"="The part I learned the most from was the tutorial. Tips closed only with a small X, nobody noticed it, and players got stuck on the screens meant to help them. Now every tip has a labeled \"SPACE Continue\" button, and the tutorial blocks everything except the action it's teaching.
 
-Credit where it's due: the 3D character models and animations were commissioned from Filbyte under my art direction, and a friend helped build levels 2 and 3."
+Credit where it's due: the 3D character models and animations were commissioned from Filbyte under my art direction, and my friend Devin Leung helped with the dialogue."
 
 "How did you design the color system?"="In Uncoded Resolve, color carries meaning, not decoration. Every side owns a color and it shows up everywhere that side appears: health bars, tiles, icons, and dialogue. **Purple** is the Black Ledger, the player's faction, so most of the UI is purple. **Blue** is robots and AI. **Red** is Marek and **cream** is Evelyn Voss.
 

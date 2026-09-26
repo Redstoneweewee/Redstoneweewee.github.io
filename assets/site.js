@@ -40,8 +40,10 @@
   if (homePage) {
     var navType = "";
     try { navType = performance.getEntriesByType("navigation")[0].type; } catch (e) {}
-    // Returning = arrived via the back chevron, the browser's back/forward buttons, or a reload.
-    window.portfolioReturning = load("portfolio_return") === homePage || navType === "back_forward" || navType === "reload";
+    // Returning = arrived via the back chevron or the browser's back/forward buttons (or reloading the Grid;
+    // reloading Ask me starts a fresh chat, so there is nothing to scroll back to).
+    window.portfolioReturning = load("portfolio_return") === homePage || navType === "back_forward"
+      || (navType === "reload" && homePage === "work.html");
     drop("portfolio_return");
 
     var scrollKey = "portfolio_scroll:" + homePage;

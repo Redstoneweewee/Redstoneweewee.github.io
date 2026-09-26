@@ -443,6 +443,7 @@ button { font: inherit; color: inherit; }
 }
 .meta dt { font-size: 13.5px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--faint); margin-bottom: 10px; }
 .meta dd { margin: 0; font-size: 14.5px; line-height: 1.5; }
+.meta .meta-wide { grid-column: 1 / -1; } /* Team & credits: names and links need the full width */
 .cover { margin: 40px 0 0; border-radius: calc(var(--radius) + 6px); overflow: hidden; box-shadow: var(--shadow); background: #0d0d12; }
 .cover .video-frame { border-radius: 0; box-shadow: none; }
 .cover + .link-chips { margin-top: 18px; }
@@ -523,6 +524,8 @@ blockquote.q footer { margin-top: 12px; font-size: 13px; font-weight: 400; color
 .next { margin-top: 110px; display: block; text-decoration: none; padding: 40px 0; border-top: 1px solid var(--line); }
 .next small { font-size: 14px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--faint); }
 .next span { display: block; margin-top: 12px; font-size: clamp(28px, 4vw, 44px); font-weight: 700; letter-spacing: -.03em; line-height: 1.1; }
+/* The link carries the next study's theme-* class (e.g. class="next theme-ur"), so --accent here is that
+   study's color from the theme rules at the top of this file: change it there and the arrow follows. */
 .next span::after { content: " \2192"; color: var(--accent); }
 .more { display: inline-block; font-weight: 600; font-size: 15px; }
 .more::after { content: " \2192"; }

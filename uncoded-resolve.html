@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Uncoded Resolve · Leifeng Chen</title>
+  <meta name="description" content="Case study: designing the HUD, icons, color system, and tutorial for Uncoded Resolve, a simultaneous-turn tactics game.">
+  <meta property="og:image" content="assets/img/ur/cover.webp">
+  <link rel="icon" type="image/webp" href="assets/img/me.webp?v=20260925c">
+  <link rel="shortcut icon" type="image/webp" href="assets/img/me.webp?v=20260925c">
+  <link rel="apple-touch-icon" href="assets/img/me.webp?v=20260925c">
+  <link rel="stylesheet" href="assets/style.css?v=20260926120000">
+</head>
+<body class="theme-ur">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="./"><img class="mark" src="assets/img/me.webp?v=20260925c" alt="Leifeng Chen" width="32" height="32">Leifeng Chen</a>
+    <nav class="view-toggle" aria-label="Switch view">
+      <a href="./"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg><span>Ask me</span></a>
+      <a href="work.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5"/></svg><span>Grid</span></a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <section class="cs-hero">
+    <p class="eyebrow">Case study 01 · Simultaneous-Turn Tactics UI</p>
+    <h1 class="h1">Uncoded Resolve: a tactics game you can read at a glance</h1>
+    <p class="lede">In Uncoded Resolve, you and the enemy pick your moves at the same time, then watch them play out together. Every turn is a read on your opponent, so the screen has to show a lot at once without burying the fight.</p>
+    <dl class="meta">
+      <div><dt>Role</dt><dd>Solo designer and developer: game design, UI, 2D art, icons, logos</dd></div>
+      <div><dt>Timeline</dt><dd>Apr to Sep 2026, mostly one 10-week course (UCSB ECE 184)</dd></div>
+      <div><dt>Tools</dt><dd>Paint.net, Photoshop, Blockbench, Unity UI Toolkit, DaVinci Resolve</dd></div>
+      <div><dt>Outcome</dt><dd>Playable gold master for Windows and Mac, with a trailer and press kit</dd></div>
+    </dl>
+    <figure class="cover"><img src="assets/img/ur/cover.webp" alt="Uncoded Resolve key art: the game's title logo over a cyberpunk scene" width="1800" height="1012"></figure>
+  </section>
+
+  <section class="cs-section">
+    <div class="prose">
+      <span class="num">The challenge</span>
+      <h2 class="h2">Two sides plan at once, and the player has to see all of it</h2>
+      <p>Each combat turn, the player chooses an action for their fighter while the enemy secretly does the same. To choose well, the player has to keep track of health, stamina, and energy for every unit, status effects on both sides, three lanes of tiles, and a bench of teammates they can swap in.</p>
+    </div>
+    <p class="problem">How do I put all of that on screen without covering the two characters the player actually cares about?</p>
+  </section>
+
+  <section class="cs-section">
+    <div class="prose">
+      <span class="num">01 · Prototype</span>
+      <h2 class="h2">Prove the fun before drawing anything</h2>
+      <p>By week 3 I had combat running as a text-only program in the terminal. That told me the simultaneous-turn idea was fun before I spent a single hour on art. From there I moved it into Unity with capsules as stand-ins, then kept adding art in stages.</p>
+    </div>
+    <div class="steps">
+      <figure class="reveal"><img src="assets/img/ur/stage-poc-0.webp" alt="Terminal prototype: an ASCII grid of three lanes with health and stamina values" loading="lazy" width="1138" height="967"><figcaption>Terminal prototype</figcaption></figure>
+      <figure class="reveal"><img src="assets/img/ur/stage-poc-1.webp" alt="Unity prototype with numbered capsules standing in for characters" loading="lazy" width="1147" height="646"><figcaption>Capsules in Unity</figcaption></figure>
+      <figure class="reveal"><img src="assets/img/ur/stage-proto-2.webp" alt="First voxel characters on the combat grid with early action buttons" loading="lazy" width="1233" height="693"><figcaption>First characters</figcaption></figure>
+      <figure class="reveal"><img src="assets/img/ur/stage-alpha.webp" alt="Alpha build exploration view in a white facility" loading="lazy" width="1400" height="786"><figcaption>Alpha</figcaption></figure>
+      <figure class="reveal"><img src="assets/img/ur/stage-beta.webp" alt="Beta combat with neon hexagon tiles and a tutorial panel" loading="lazy" width="1400" height="874"><figcaption>Beta</figcaption></figure>
+      <figure class="reveal"><img src="assets/img/ur/stage-gold-master.webp" alt="Gold master exploration scene with party and dialogue" loading="lazy" width="1400" height="874"><figcaption>Gold master</figcaption></figure>
+    </div>
+    <div class="prose" style="margin-top:40px">
+      <p>I also balanced the core actions (attack, defend, charge, rest, swap, and maneuver) with a spreadsheet of weights and outcome values. I went through the possible action combos to make sure no single move was obviously the best choice.</p>
+    </div>
+    <figure class="fig plain reveal"><img src="assets/img/ur/balancing-matrix.webp" alt="Balancing spreadsheet: a counter matrix of action pairs color-coded from red to green" loading="lazy" width="1600" height="529"><figcaption><b>Balancing matrix.</b> Every action against every other action, scored and color-coded, so weak or overpowered combos stand out.</figcaption></figure>
+  </section>
+
+  <section class="cs-section" id="layout">
+    <div class="prose">
+      <span class="num">02 · Layout</span>
+      <h2 class="h2">Mocking up the combat HUD</h2>
+      <p>I started from bounding boxes laid over the real camera angle, blocking out where each piece of information would live. Your team's bench sits on the left and the enemy's on the right. Actions cluster at the bottom right, and the turn counter sits top center, which leaves the middle of the screen for the fight. I looked at Minecraft Dungeons and Honkai: Star Rail for how other games handle similar systems.</p>
+    </div>
+    <div class="grid-2">
+      <figure class="fig dark reveal"><img src="assets/img/ur/hud-boxes.webp" alt="Wireframe of HUD regions as colored bounding boxes over the combat camera" loading="lazy" width="1400" height="788"><figcaption><b>Regions first.</b> Bounding boxes for benches, bars, and actions.</figcaption></figure>
+      <figure class="fig dark reveal"><img src="assets/img/ur/hud-v1.webp" alt="First HUD mockup with gray placeholder characters, turn bar, and round action buttons" loading="lazy" width="1400" height="788"><figcaption><b>First pass.</b> Real icons and bars over placeholder models.</figcaption></figure>
+    </div>
+    <figure class="fig dark reveal"><img src="assets/img/ur/hud-v2-annotated.webp" alt="Annotated HUD mockup: notes say turns have infinite time and status effects show a tooltip on hover" loading="lazy" width="1600" height="900"><figcaption><b>Version 2.2, annotated.</b> Status effects moved above each health bar and show a tooltip on hover, so the player never has to memorize icons. Turns have no time limit, because this is a thinking game.</figcaption></figure>
+    <div class="grid-2">
+      <figure class="fig dark reveal"><img src="assets/img/ur/timer-mockup.webp" alt="Mockup of a turn timer bar carrying between Turn 2 and Turn 3" loading="lazy" width="1100" height="600"><figcaption><b>Turn timer exploration.</b> Ideas for how time could carry from one turn to the next.</figcaption></figure>
+      <figure class="fig dark reveal"><img src="assets/img/ur/exploration-wireframe.webp" alt="Wireframe of the exploration HUD with regions for minimap, objective, events, and tutorial" loading="lazy" width="1243" height="690"><figcaption><b>Exploration HUD wireframe.</b> Minimap, objective, event feed, tutorial slot, and save notice, each with its own place.</figcaption></figure>
+    </div>
+    <div class="grid-2" style="align-items:center">
+      <figure class="fig dark reveal"><img src="assets/img/ur/enemy-preview.webp" alt="Hostile Analysis card for enemy BX-4 Bastion listing its stats, ability, and tactic" loading="lazy" width="1000" height="835"></figure>
+      <div class="prose">
+        <h3 class="h3" style="margin-bottom:12px">Something to read about the enemy</h3>
+        <p>A Hostile Analysis card tells the player what an enemy is built to do: its stats, its ability, and its tactic (this one "prefers safe counters"). Simultaneous turns reward reading your opponent, so the game gives you something to read.</p>
+        <p style="font-size:14px;color:var(--muted)">I made this card in Paint.net, working over an AI-generated image that I used as a reference.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-section">
+    <div class="prose">
+      <span class="num">03 · Visual language</span>
+      <h2 class="h2">A color and symbol system that tells you who's who</h2>
+      <p>With several characters and two factions on screen, color had to carry meaning, not decoration. I gave every side its own color and used it everywhere that side appears: health bars, tiles, icons, and dialogue.</p>
+    </div>
+    <div class="swatches">
+      <div class="swatch"><i style="background:#c644d2"></i><span>Black Ledger<small>The player's faction, so most of the UI is purple</small></span></div>
+      <div class="swatch"><i style="background:#05bff4"></i><span>Aerodyne<small>Robots and AI</small></span></div>
+      <div class="swatch"><i style="background:#f01250"></i><span>Marek<small>The protagonist</small></span></div>
+      <div class="swatch"><i style="background:#e8bf89"></i><span>Evelyn Voss<small>A playable ally</small></span></div>
+    </div>
+    <div class="grid-3" style="align-items:center">
+      <figure class="fig dark reveal"><img src="assets/img/ur/symbol-black-ledger.webp" alt="Black Ledger symbol: two sharp purple chevrons pointing down" loading="lazy" width="368" height="416"><figcaption><b>Black Ledger.</b> Sharp and full of arrows: a faction that sabotages and commands.</figcaption></figure>
+      <figure class="fig dark reveal"><img src="assets/img/ur/symbol-aerodyne.webp" alt="Aerodyne symbol: a cyan four-pointed star with a rigid diamond inside" loading="lazy" width="600" height="600"><figcaption><b>Aerodyne.</b> Rounded outside to look friendly and flawless, rigid inside because it's still a machine.</figcaption></figure>
+      <figure class="fig dark reveal"><img src="assets/img/ur/palette.webp" alt="Full color palette with shades for each faction, character, objectives, tutorial, and grays" loading="lazy" width="800" height="500"><figcaption><b>Full palette.</b> Shades for each side, plus objectives, tutorial, and neutrals.</figcaption></figure>
+    </div>
+    <figure class="fig dark reveal"><img src="assets/img/ur/title-logo.webp" alt="Uncoded Resolve title logo, with the Aerodyne mark in the O" loading="lazy" width="1400" height="281"><figcaption><b>Title logo.</b> Both faction symbols appear in the title, a hint at the story's conflict.</figcaption></figure>
+    <div class="prose" style="margin-top:48px">
+      <h3 class="h3" style="margin-bottom:12px">Icons: from rough mocks to one family</h3>
+      <p>I drew quick mocks of each action first, then redrew the whole set so every icon reads as part of one family. Status effects like stagger and invisibility share the same style, so players learn one visual vocabulary.</p>
+    </div>
+    <figure class="fig dark reveal"><img src="assets/img/ur/icon-mocks.webp" alt="Rough first icon mocks: attack, defend, charge, rest, swap, maneuver" loading="lazy" width="1600" height="298"><figcaption><b>Mocks.</b> Attack, defend, charge, rest, swap, maneuver.</figcaption></figure>
+    <figure class="fig dark reveal"><img src="assets/img/ur/icons-final.webp" alt="Final icon set: actions on the top row and status effects on the bottom row" loading="lazy" width="1600" height="400"><figcaption><b>Final set.</b> Actions on top and status effects below, all in one style.</figcaption></figure>
+  </section>
+
+  <section class="cs-section" id="tutorial">
+    <div class="prose">
+      <span class="num">04 · The usability miss</span>
+      <h2 class="h2">The tutorial nobody could close</h2>
+      <p>The first playable build taught combat with tip panels that closed only through a small X in the corner. I thought it was clean. Playtesters didn't agree: nobody knew to press the X, so they got stuck on the very screens meant to help them. In my post-mortem, I called it one of the worst design choices I've ever made.</p>
+    </div>
+    <div class="compare">
+      <figure class="before reveal">
+        <span class="label">Before</span>
+        <div class="shot"><img src="assets/img/ur/tutorial-before.webp" alt="Tutorial tip reading 'The enemy is Staggered. Hover over the status to see what it does', with a small red X circled in the corner" loading="lazy" width="466" height="87"></div>
+        <figcaption>The only way out was the small X (circled). It looked like decoration, not a button.</figcaption>
+      </figure>
+      <figure class="after reveal">
+        <span class="label">After</span>
+        <div class="shot"><img src="assets/img/ur/tutorial-after.webp" alt="Tutorial tip with a labeled 'SPACE Continue' button in the corner" loading="lazy" width="388" height="97"></div>
+        <figcaption>Every tip now has a labeled continue button that shows the key to press.</figcaption>
+      </figure>
+    </div>
+    <div class="prose" style="margin-top:36px">
+      <p>I rebuilt the tutorial around the same idea: guide the player through every step. It now blocks every action except the one it's teaching and shows one short tip per step, so there's never a moment where the player doesn't know what to do next.</p>
+    </div>
+    <p class="problem">"A good tutorial is unnoticed." My rule now: build the tutorial alongside each mechanic, and never hide a control behind an unlabeled X.</p>
+  </section>
+
+  <section class="cs-section">
+    <div class="prose">
+      <span class="num">05 · Final build</span>
+      <h2 class="h2">The finished game</h2>
+      <p>The gold master has two playable levels, an exploration mode with objectives, terminals, a minimap, and branching persuasion dialogue, plus save/load and level select. Getting simultaneous actions to feel responsive took about 40 animation variants.</p>
+    </div>
+    <figure class="fig dark narrow reveal"><img src="assets/img/ur/combat.webp" alt="Animated combat: characters lock in actions and resolve them together" loading="lazy" width="568" height="320"><figcaption><b>Combat.</b> Both sides lock in, then their actions play out together.</figcaption></figure>
+    <div class="grid-2">
+      <figure class="fig dark reveal"><img src="assets/img/ur/final-combat-6.webp" alt="Combat with a blue energy projectile crossing hexagon tiles" loading="lazy" width="1600" height="900"></figure>
+      <figure class="fig dark reveal"><img src="assets/img/ur/final-exploration-8.webp" alt="Exploration: a repair robot dialogue with a list of choices" loading="lazy" width="1600" height="896"></figure>
+      <figure class="fig dark reveal"><img src="assets/img/ur/final-exploration-9.webp" alt="Exploration: Marek and Evelyn Voss in front of a large screen" loading="lazy" width="1600" height="896"></figure>
+      <figure class="fig dark reveal"><img src="assets/img/ur/final-exploration-10.webp" alt="Exploration: Marek in a dark red room during dialogue" loading="lazy" width="1600" height="896"></figure>
+    </div>
+    <figure class="fig video reveal"><div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/35AqF1ij6UQ?rel=0" title="Uncoded Resolve trailer" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><figcaption><b>Trailer.</b> I edited it in DaVinci Resolve.</figcaption></figure>
+    <div class="link-chips"><a href="https://youtu.be/35AqF1ij6UQ" target="_blank" rel="noopener">▶ Watch on YouTube</a></div>
+  </section>
+
+  <section class="cs-section">
+    <div class="prose">
+      <span class="num">Reflection</span>
+      <h2 class="h2">What I'd do differently</h2>
+    </div>
+    <ol class="lessons">
+      <li><b>Onboarding is core product work.</b> I left the tutorial and sound for the last two weeks, and both suffered. They now get built alongside the mechanics.</li>
+      <li><b>Size the space to the story.</b> The dialogue ran long for such small maps. Next time I'd plan each map around the story beats it has to hold.</li>
+      <li><b>Take one big risk per project.</b> I spent three weeks getting a reinforcement-learning enemy AI to work. A simpler utility AI would have left that time for playtesting.</li>
+    </ol>
+    <p class="credits"><b>Credits.</b> 3D character models and animations were commissioned from Filbyte under my art direction, with several rounds of revisions. A friend helped build levels 2 and 3. Sound effects were built from Pixabay clips. The code was written by AI coding agents (Claude Code, Codex, Gemini) from my specifications and architecture. Character concept art was AI-generated and isn't shown here.</p>
+  </section>
+
+  <a class="next" href="eezy-receipt.html"><small>Next case study</small><span>Eezy Receipt</span></a>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© 2026 Leifeng Chen</span>
+    <span class="links"><a href="mailto:leifengchen123@gmail.com">Email</a><a href="https://www.linkedin.com/in/leifengchen" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://github.com/Redstoneweewee" target="_blank" rel="noopener noreferrer">GitHub</a></span>
+    <span class="credit">Layout and the talk-to-my-portfolio idea are inspired by <a href="https://www.studio-nikita.com/" target="_blank" rel="noopener noreferrer">Studio Nikita</a> by Nikita Rochiramani (<a href="https://www.awwwards.com/sites/studio-nikita" target="_blank" rel="noopener noreferrer">Awwwards nominee</a>).</span>
+  </div>
+</footer>
+<script src="assets/site.js?v=20260925182200"></script>
+</body>
+</html>

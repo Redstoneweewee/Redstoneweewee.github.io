@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Leifeng Chen · Design Portfolio</title>
+  <meta name="description" content="Leifeng Chen designs and builds interfaces. Ask the portfolio about his case studies, process, and the mistakes he learned from.">
+  <meta property="og:title" content="Leifeng Chen · Design Portfolio">
+  <meta property="og:description" content="A portfolio you can ask questions: game UI, mobile usability, and brand design.">
+  <meta property="og:image" content="assets/img/ur/cover.webp">
+  <link rel="icon" type="image/webp" href="assets/img/me.webp?v=20260925c">
+  <link rel="shortcut icon" type="image/webp" href="assets/img/me.webp?v=20260925c">
+  <link rel="apple-touch-icon" href="assets/img/me.webp?v=20260925c">
+  <link rel="stylesheet" href="assets/style.css?v=20260926120000">
+</head>
+<body class="chat-page">
+<a class="skip" href="#ask-input">Skip to the question box</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="./"><img class="mark" src="assets/img/me.webp?v=20260925c" alt="Leifeng Chen" width="32" height="32">Leifeng Chen</a>
+    <nav class="view-toggle" aria-label="Switch view">
+      <a href="./" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg><span>Ask me</span></a>
+      <a href="work.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5"/></svg><span>Grid</span></a>
+    </nav>
+  </div>
+</header>
+
+<main class="chat-main" id="main">
+  <section class="intro" id="intro">
+    <h1 class="display">I design things people use, then watch where they get stuck.</h1>
+    <p class="lede">This portfolio talks back. Ask about my case studies, my process, or the mistakes I learned from, and I'll answer with the work<span class="typing-dots" aria-hidden="true"><i></i><i></i><i></i></span></p>
+    <div class="guide">
+      <h2>Try asking</h2>
+      <div id="starters"></div>
+    </div>
+    <p class="small" style="margin-top:26px">Prefer to browse? <a href="work.html">Switch to the grid view</a>.</p>
+  </section>
+
+  <div class="thread" id="thread" aria-live="polite"></div>
+</main>
+
+<div class="guide-panel" id="guide-panel" role="dialog" aria-label="Question guide" hidden>
+  <h2>Question guide</h2>
+  <p class="small">Pick a topic to start. Every answer is written by me.</p>
+  <div class="guide-groups"></div>
+</div>
+
+<div class="composer-wrap">
+  <div class="composer">
+    <button class="guide-btn" id="guide-btn" type="button" aria-label="Show all questions" aria-controls="guide-panel" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+    </button>
+    <form id="ask-form" autocomplete="off">
+      <label class="sr-only" for="ask-input">Ask Leifeng a question</label>
+      <input id="ask-input" type="text" maxlength="200" placeholder="Ask me about my work…" enterkeyhint="send">
+      <button class="send" type="submit" aria-label="Send" disabled>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+      </button>
+    </form>
+  </div>
+  <p class="agent-note">Answers are written by me and matched to your question in your browser. Nothing you type is sent anywhere. Concept inspired by <a href="https://www.studio-nikita.com/" target="_blank" rel="noopener noreferrer">Studio Nikita</a>.</p>
+</div>
+
+<script src="assets/site.js?v=20260926120000"></script>
+<script src="assets/agent.js?v=20260926120000"></script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Eezy Receipt · Leifeng Chen</title>
+  <meta name="description" content="Case study: redesigning a receipt-splitting app after testers couldn't figure out how to claim items.">
+  <meta property="og:image" content="assets/img/ez/screen-3.webp">
+  <link rel="icon" type="image/webp" href="assets/img/me.webp?v=20260925c">
+  <link rel="shortcut icon" type="image/webp" href="assets/img/me.webp?v=20260925c">
+  <link rel="apple-touch-icon" href="assets/img/me.webp?v=20260925c">
+  <link rel="stylesheet" href="assets/style.css?v=20260926120000">
+</head>
+<body class="theme-ez">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="./"><img class="mark" src="assets/img/me.webp?v=20260925c" alt="Leifeng Chen" width="32" height="32">Leifeng Chen</a>
+    <nav class="view-toggle" aria-label="Switch view">
+      <a href="./"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg><span>Ask me</span></a>
+      <a href="work.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5"/></svg><span>Grid</span></a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <section class="cs-hero">
+    <p class="eyebrow">Case study 02 · Mobile Usability Redesign</p>
+    <h1 class="h1">Eezy Receipt: from a drag-only MVP to a split anyone can finish</h1>
+    <p class="lede">After a group shopping trip, someone has to read the receipt, figure out who had what, add tax, and then chase everyone to pay. Eezy Receipt scans the receipt, lets each person claim their own items from their phone, and tracks who has paid.</p>
+    <dl class="meta">
+      <div><dt>Role</dt><dd>Designer of every screen, flow, and the logo. Scrum Master. Built the shared component library and themes</dd></div>
+      <div><dt>Team</dt><dd>7 students, UCSB CS 148</dd></div>
+      <div><dt>Timeline</dt><dd>Jan to Mar 2026 (10 weeks)</dd></div>
+      <div><dt>Shipped</dt><dd>iOS app to 16 testers on TestFlight</dd></div>
+    </dl>
+    <div class="grid-3" style="margin-top:40px">
+      <figure class="fig dark"><img src="assets/img/ez/screen-1.webp" alt="Crop Receipt screen framing a Costco receipt photo" width="1200" height="1200"></figure>
+      <figure class="fig dark"><img src="assets/img/ez/screen-4.webp" alt="Home screen with finances summary and room summary screen" width="1200" height="1200"></figure>
+      <figure class="fig dark"><img src="assets/img/ez/screen-3.webp" alt="Receipt room where items are selected and a Claim 4 items button appears" width="1200" height="1200"></figure>
+    </div>
+  </section>
+
+  <section class="cs-section">
+    <div class="prose">
+      <span class="num">01 · Flow</span>
+      <h2 class="h2">Sketch the whole journey first</h2>
+      <p>There are two kinds of users: the host, who paid and uploads the receipt, and everyone else, who just wants to claim their items and see what they owe. Before opening Figma I sketched rough wireframes of the core screens, then mapped both journeys end to end in a user flow diagram.</p>
+    </div>
+    <figure class="fig plain reveal"><img src="assets/img/ez/sketch.webp" alt="Rough wireframe sketches of the app's screens connected by arrows, from Start to the receipt split" loading="lazy" width="1600" height="838"><figcaption><b>First sketches.</b> Upload, take a photo, item list, and the split, drawn roughly to settle the order of screens.</figcaption></figure>
+    <figure class="fig plain reveal"><img src="assets/img/ez/user-flow.webp" alt="User flow diagram with decision nodes for creating a room, joining, uploading, claiming, and paying" loading="lazy" width="1600" height="1103"><figcaption><b>User flow.</b> Host and participant paths, from creating or joining a room to settling up.</figcaption></figure>
+  </section>
+
+  <section class="cs-section">
+    <div class="prose">
+      <span class="num">02 · MVP</span>
+      <h2 class="h2">Version one: drag items into baskets</h2>
+      <p>The first version was mobile-only and kept things minimal. It scanned the receipt, listed the items, and let one person drag each item onto a colored user box at the bottom of the screen. It proved that scanning plus claiming could work. It also looked and felt like a prototype.</p>
+    </div>
+    <div class="grid-2" style="align-items:center">
+      <figure class="fig dark reveal"><img src="assets/img/ez/mvp-drag.webp" alt="Screen recording of the MVP: items are dragged onto blue and red user boxes" loading="lazy" width="960" height="540"><figcaption><b>The MVP.</b> Drag an item onto User 1 or User 2 to assign it.</figcaption></figure>
+      <figure class="fig plain reveal"><img src="assets/img/ez/figma-flow.webp" alt="Figma board showing the redesigned screens and how they connect" loading="lazy" width="1600" height="1440"><figcaption><b>Screen flow in Figma.</b> How the screens connect after the MVP.</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="cs-section">
+    <div class="prose">
+      <span class="num">03 · Feedback</span>
+      <h2 class="h2">What testers told us</h2>
+      <p>We sent v2.0.0 to testers with a short survey, and our professor reviewed the app the same week. The results pointed to one problem: people didn't know how to claim an item.</p>
+    </div>
+    <div class="stats">
+      <div class="stat warn"><strong>3 / 5</strong>
+        <div class="meter" role="img" aria-label="3 out of 5"><i style="width:60%"></i></div>
+        <span>testers couldn't tell how or where to assign items</span></div>
+      <div class="stat warn"><strong>2.8 / 5</strong>
+        <div class="meter" role="img" aria-label="2.8 out of 5"><i style="width:56%"></i></div>
+        <span>average confidence that they could finish a split without help</span></div>
+      <div class="stat warn"><strong>3.6 / 5</strong>
+        <div class="meter" role="img" aria-label="3.6 out of 5"><i style="width:72%"></i></div>
+        <span>average rating for how clean and intuitive the interface felt</span></div>
+    </div>
+    <p class="stats-note">All three were lower than we wanted: most testers were confused, and nobody was confident they could finish a split alone.</p>
+    <div class="quotes">
+      <blockquote class="q">"I did not know I was supposed to drag items to the people."<footer>Tester, v2.0.0 survey</footer></blockquote>
+      <blockquote class="q">"The drag items to assign to people feature can be confusing to users who think it's a click and drop."<footer>Tester, v2.0.0 survey</footer></blockquote>
+      <blockquote class="q">"I might have a hard time discovering how to assign people to items and where to check how much I owe."<footer>Tester, v2.0.0 survey</footer></blockquote>
+    </div>
+    <div class="prose" style="margin-top:32px">
+      <p>Our professor's review found the same problem from another angle. Editing and assigning happened on the same screen, so you couldn't tell whether an item's details were final or still being changed. The review also asked for a walkthrough for first-time users.</p>
+    </div>
+    <p class="callout"><b>Why this mattered:</b> drag-and-drop felt natural to us because we built it. For a new user it was invisible, since nothing on screen said "drag me" or showed where to drop.</p>
+  </section>
+
+  <section class="cs-section" id="redesign">
+    <div class="prose">
+      <span class="num">04 · Redesign</span>
+      <h2 class="h2">Two changes that made claiming obvious</h2>
+      <p><b>1. Tap to select, then "Claim N items."</b> Now you tap the items you had, and a "Claim 4 items" button appears right above the user boxes, pointing at where the items will go. Dragging onto a user box still works as a shortcut, so fast users keep the gesture.</p>
+      <p><b>2. Separate Assign and Edit modes.</b> Fixing an OCR mistake and claiming an item are now two separate modes. In Assign mode the item details are locked, so you know they're final. In Edit mode nothing can be claimed.</p>
+    </div>
+    <div class="grid-2">
+      <figure class="fig dark reveal"><img src="assets/img/ez/screen-2.webp" alt="Receipt room with checkbox rows for each item and prices" loading="lazy" width="1200" height="1200"><figcaption><b>Select.</b> Each row gets a select circle, so tapping works for people who don't think to drag.</figcaption></figure>
+      <figure class="fig dark reveal"><img src="assets/img/ez/screen-3.webp" alt="Selected items with a Claim 4 items button and an arrow toward the user boxes" loading="lazy" width="1200" height="1200"><figcaption><b>Claim.</b> The button counts your selection and sits right above where the items land.</figcaption></figure>
+    </div>
+    <div class="grid-2" style="align-items:center">
+      <figure class="fig plain reveal"><img src="assets/img/ez/participant-mockup.webp" alt="Mockup notes for the join flow: choose which participant you are or add yourself" loading="lazy" width="1146" height="887"><figcaption><b>Joining without an account.</b> Friends scan a QR code, pick their name from the host's list, or add themselves.</figcaption></figure>
+      <figure class="fig plain reveal"><img src="assets/img/ez/long-names.webp" alt="Item list mockup filled with very long item names and large prices" loading="lazy" width="596" height="1212" style="max-width:300px;margin:0 auto"><figcaption><b>Stress test.</b> The item row with very long names and five-figure prices.</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="cs-section">
+    <div class="prose">
+      <span class="num">05 · Accessibility</span>
+      <h2 class="h2">Money that doesn't depend on color</h2>
+      <p>Showing what you owe in red and what you're owed in green is the obvious choice, but red-green color blindness is common. Every amount also carries a + or − sign and a plain label, "You Owe" or "You Are Owed," so it reads correctly without color.</p>
+    </div>
+    <div class="grid-2" style="align-items:center">
+      <figure class="fig plain reveal"><img src="assets/img/ez/finances.webp" alt="Finances screen: 'You Owe $64.91' and 'You Are Owed $105.62', with signed amounts in the history list" loading="lazy" width="596" height="1212" style="max-width:320px;margin:0 auto"></figure>
+      <div class="prose">
+        <h3 class="h3" style="margin-bottom:12px">One design system, two platforms, two themes</h3>
+        <p>I built the shared component library and the light and dark themes that the mobile and web apps both use. Colors are defined as named tokens: surfaces, borders, payment status (pending, waiting, completed), and positive or negative amounts. A screen never hard-codes a color, so both themes stay consistent everywhere.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-section">
+    <div class="prose">
+      <span class="num">06 · Identity</span>
+      <h2 class="h2">Logo</h2>
+      <p>The logo started as a sketch of a long, curling receipt. The first digital round folded it into a stack of lines with a dollar sign. For the final mark I simplified it to two bars, so it still reads at app-icon size, and switched to the app's blue.</p>
+    </div>
+    <div class="grid-3" style="align-items:center">
+      <figure class="fig plain reveal"><img src="assets/img/ez/logo-sketch.webp" alt="Line sketch of a long curling receipt" loading="lazy" width="700" height="700"><figcaption>Sketch</figcaption></figure>
+      <figure class="fig dark reveal"><img src="assets/img/ez/logo-round1.webp" alt="Five pink logo variations built from stacked receipt lines and a dollar sign" loading="lazy" width="1400" height="280"><figcaption>First round</figcaption></figure>
+      <figure class="fig plain reveal"><img src="assets/img/ez/logo-final.webp" alt="Final blue Eezy Receipt logo: a receipt outline with a dollar sign and two bars" loading="lazy" width="700" height="700"><figcaption>Final</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="cs-section">
+    <div class="prose">
+      <span class="num">Reflection</span>
+      <h2 class="h2">What I learned</h2>
+    </div>
+    <ol class="lessons">
+      <li><b>Test discoverability before building the interaction.</b> A five-minute test with a paper sketch would have caught the drag problem weeks before we coded it.</li>
+      <li><b>Give every gesture a visible alternative.</b> Dragging is fast once you know it exists. A button that says what it does is how people find out.</li>
+      <li><b>Close the loop.</b> We shipped the redesign but ran out of quarter before surveying testers again. Next time I'd schedule the second round of testing before the deadline, not after.</li>
+    </ol>
+    <figure class="fig video reveal"><div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/tGaxgyy-COs?rel=0" title="Eezy Receipt launch video" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><figcaption><b>Launch video.</b></figcaption></figure>
+    <figure class="fig site-embed reveal"><div class="browser"><div class="browser-bar"><span class="bdots" aria-hidden="true"><i></i><i></i><i></i></span><span class="url">masonle6080.github.io/-Eezy-Receipt</span><a class="open-link" href="https://masonle6080.github.io/-Eezy-Receipt/" target="_blank" rel="noopener">Open site ↗</a></div><iframe src="https://masonle6080.github.io/-Eezy-Receipt/" title="Eezy Receipt landing page" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms"></iframe></div><figcaption><b>Landing page</b>, live. Scroll inside the frame.</figcaption></figure>
+    <div class="link-chips"><a href="https://youtu.be/tGaxgyy-COs" target="_blank" rel="noopener">▶ Launch video</a><a href="https://masonle6080.github.io/-Eezy-Receipt/" target="_blank" rel="noopener">↗ Landing page</a></div>
+  </section>
+
+  <a class="next" href="hedron.html"><small>Next case study</small><span>Hedron³</span></a>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© 2026 Leifeng Chen</span>
+    <span class="links"><a href="mailto:leifengchen123@gmail.com">Email</a><a href="https://www.linkedin.com/in/leifengchen" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://github.com/Redstoneweewee" target="_blank" rel="noopener noreferrer">GitHub</a></span>
+    <span class="credit">Layout and the talk-to-my-portfolio idea are inspired by <a href="https://www.studio-nikita.com/" target="_blank" rel="noopener noreferrer">Studio Nikita</a> by Nikita Rochiramani (<a href="https://www.awwwards.com/sites/studio-nikita" target="_blank" rel="noopener noreferrer">Awwwards nominee</a>).</span>
+  </div>
+</footer>
+<script src="assets/site.js?v=20260925182200"></script>
+</body>
+</html>

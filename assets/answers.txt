@@ -4,6 +4,8 @@
 #   - The question is the button text, and it's also matched against what visitors type.
 #   - A blank line inside an answer starts a new paragraph. A single line break stays a line break.
 #   - **double asterisks** make text bold. Lines starting "1. ", "2. " ... become a numbered list.
+#   - [linked text](https://example.com) makes a link. Web links open in a new tab; site pages
+#     like [Hedron³](hedron.html) open in place.
 #   - Write \" for a quote mark inside a question or answer.
 #   - Lines starting with # are comments (so do not start a line of an answer with #).
 #
@@ -17,7 +19,7 @@
 
 "Who are you?"="I'm Leifeng, a third-year Computer Science student at UC Santa Barbara who does design and engineering! I design interfaces, icons, and visual systems, and I can build them too.
 
-I started designing for real people as a kid, building Minecraft maps for my best friend. That grew into Minecraft addons with **3.6M+ downloads** and a YouTube channel with **64K+ subscribers**. These days I also work on the Daily Nexus's iOS and Android apps and co-founded a startup, Hedron³."
+I started designing for real people as a kid, building Minecraft maps for my best friend, [Devin Leung](https://www.linkedin.com/in/devin-leung-a19a4823a/). That grew into Minecraft addons with **3.6M+ downloads** and a YouTube channel with **64K+ subscribers**. These days I also work on the Daily Nexus's iOS and Android apps and co-founded a startup, Hedron³."
 
 "Show me your best work"="Here are my four case studies. Each one keeps the messy mistakes in: the mockups, the feedback, and what I changed because of it.
 
@@ -29,19 +31,19 @@ I proved the combat was fun as a text-only terminal program before drawing anyth
 
 "[more] Tell me about Uncoded Resolve"="The part I learned the most from was the tutorial. Tips closed only with a small X, nobody noticed it, and players got stuck on the screens meant to help them. Now every tip has a labeled \"SPACE Continue\" button, and the tutorial blocks everything except the action it's teaching.
 
-Credit where it's due: the 3D character models and animations were commissioned from Filbyte under my art direction, and my friend Devin Leung helped with the dialogue."
+Credit where it's due: the 3D character models and animations were commissioned from [Filbyte](https://www.fiverr.com/seanencabo) under my art direction, and my friend [Devin Leung](https://www.linkedin.com/in/devin-leung-a19a4823a/) helped with the dialogue."
 
 "How did you design the color system?"="In Uncoded Resolve, color carries meaning, not decoration. Every side owns a color and it shows up everywhere that side appears: health bars, tiles, icons, and dialogue. **Purple** is the Black Ledger, the player's faction, so most of the UI is purple. **Blue** is robots and AI. **Red** is Marek and **cream** is Evelyn Voss.
 
 The faction symbols follow the same idea. The Black Ledger mark is sharp and full of arrows because they sabotage and command. Aerodyne's is rounded outside to look friendly and rigid inside, because underneath it's still a machine."
 
-"Tell me about Eezy Receipt"="Eezy Receipt splits a group receipt. You scan it, everyone claims their own items from their phone, and it tracks who has paid. I designed every screen, flow, and the logo for our team of 7, and I was the Scrum Master.
+"Tell me about Eezy Receipt"="Eezy Receipt splits a group receipt. You scan it, everyone claims their own items from their phone, and it tracks who has paid. I designed every screen, flow, and the logo for our team of 7, and I was the Scrum Master. I built it with [Ken Thampiratwong](https://www.linkedin.com/in/kenthampiratwong), [Roy Lee](https://github.com/roy-lee7473), [Edward Garcia](https://github.com/ELEXG), [Charlie Nava](https://github.com/gupperfisher), [Mason Le](https://www.linkedin.com/in/mason-le-68b75a274), and [Yiheng “Zeus” Feng](https://github.com/1274613951).
 
-Our first version made you drag items onto people. When we surveyed testers on v2.0.0, **3 of 5 couldn't tell how to assign items**. So I added tap-to-select with a \"Claim N items\" button, and split the app into separate Assign and Edit modes."
+After our first round of testing, I made claiming obvious: tap the items you had, then press one \"Claim N items\" button. Dragging still works as a shortcut, and fixing a scanned price happens in its own Edit mode, so details stay locked while everyone claims. The app shipped to **16 iOS testers on TestFlight**, and the mobile and web apps share one design system with light and dark themes."
 
-"Tell me about Hedron³"="Hedron³ is the startup I co-founded with one partner. We're building a desktop app that turns a shipment's scanned contracts into export paperwork, with AI-assisted extraction and a required human review step.
+"Tell me about Hedron³"="Hedron³ is the startup I co-founded with [Philip Wu](https://www.linkedin.com/in/yifei-wu-a04a32352/). We're building a desktop app that turns a shipment's scanned contracts into export paperwork, with AI-assisted extraction and a required human review step.
 
-I designed the logo, the business card, and the app's workflow: five numbered steps that unlock in order, so nobody has to learn a new tool before they can use it. My co-founder built most of our marketing site, hedron3.com. I cleaned it up, made it look better, and polished its browser-only demo of the workflow."
+I designed the logo, the business card, and the app's workflow: five numbered steps that unlock in order, so nobody has to learn a new tool before they can use it. Philip built most of our marketing site, [hedron3.com](https://hedron3.com). I cleaned it up, made it look better, and polished its browser-only demo of the workflow."
 
 "[more] Tell me about Hedron³"="The step I cared most about is human review. Extracted data lands in a workbook where yellow cells need checking, red issues block generation, and amber issues need a look. The AI never sends a document on its own."
 
@@ -90,13 +92,13 @@ I'm careful to say what AI made. The game's character concept art was AI-generat
 
 "Is this chat an AI?"="Nope, and I'd rather be upfront about it: this isn't an AI. I wrote every answer myself in a plain text file, and the page just matches your question to the closest one. It runs entirely in your browser, so nothing you type is sent anywhere, and it can't make up facts about me.
 
-The idea of a portfolio you can talk to comes from Studio Nikita by Nikita Rochiramani. Her site is worth a look."
+The idea of a portfolio you can talk to comes from [Studio Nikita](https://www.studio-nikita.com/) by Nikita Rochiramani. Her site is worth a look."
 
 "Show me your visual design"="Most of my visual work lives in two places: game UI and YouTube thumbnails.
 
 For my Minecraft add-on videos I designed every thumbnail: one readable title and the add-on's items front and center. Across six videos they drew **8.9% to 17.7% click-through on 1.67M impressions**. The best, Unbreakable Armor, hit 17.7%."
 
-"Tell me about your YouTube and Minecraft work"="Most of my design instincts come from here. In 2017 my best friend Devin Leung and I started building custom Minecraft challenge maps and co-editing videos of our playthroughs. In June 2021 I switched to Minecraft Bedrock add-ons under the name Warden Creations.
+"Tell me about your YouTube and Minecraft work"="Most of my design instincts come from here. In 2017 my best friend [Devin Leung](https://www.linkedin.com/in/devin-leung-a19a4823a/) and I started building custom Minecraft challenge maps and co-editing videos of our playthroughs. In June 2021 I switched to Minecraft Bedrock add-ons under the name Warden Creations.
 
 The channel has **64.7K subscribers** and 1.7M views, and my add-ons have **3.6M+ downloads**. I ran a 6,000-member Discord, replied to more than 1,100 comments, and kept a running list of player suggestions that shaped every update. That's where I learned to design for people who will never read the manual."
 
@@ -110,13 +112,13 @@ Running 11 live add-ons plus videos was like running a live-service game studio 
 
 "How did you design the in-game tooltips?"="Minecraft Bedrock's item tooltips only show a name and durability, but my weapons had windups, cooldowns, area attacks, and status effects like poison and stun. Players shouldn't have to alt-tab to a wiki to learn what a sword does.
 
-So I overrode Minecraft's font sheet with custom Unicode private-use glyphs, which let me put 16×16 pixel-art icons for damage, windup, cooldown, and effects straight into the item description, next to color-coded rarity tiers. In play sessions, players stopped asking \"what does this weapon do?\" and started asking which weapon counters which mob."
+So I overrode Minecraft's font sheet with custom Unicode private-use glyphs, which let me put 16×16 pixel-art icons for damage, windup, cooldown, and effects straight into the item description. In play sessions, players stopped asking \"what does this weapon do?\" and started asking which weapon counters which mob."
 
-"Do you do motion design?"="Yes. I have 10 years of video editing experience, including 5.5+ years in DaVinci Resolve with Fusion and Fairlight. It started with co-editing Minecraft videos with my best friend in 2017, and I cut the Uncoded Resolve trailer myself.
+"Do you do motion design?"="Yes. I have 10 years of video editing experience, including 5.5+ years in DaVinci Resolve with Fusion and Fairlight. It started with co-editing Minecraft videos with my best friend, [Devin Leung](https://www.linkedin.com/in/devin-leung-a19a4823a/), in 2017, and I made both videos below myself: the Uncoded Resolve trailer and the Eezy Receipt launch video.
 
 In the game itself, getting simultaneous actions to feel responsive took about 40 animation variants."
 
-"How do you work with a team?"="On Eezy Receipt I was the Scrum Master for a team of 7: I ran three sprints of planning, standups, and retros, owned the Kanban board, and was also the top contributor to the code. At Hedron³ it's just me and my co-founder, so we split everything.
+"How do you work with a team?"="On Eezy Receipt I was the Scrum Master for a team of 7: I ran three sprints of planning, standups, and retros, owned the Kanban board, and was also the top contributor to the code. At Hedron³ it's just me and my co-founder, [Philip Wu](https://www.linkedin.com/in/yifei-wu-a04a32352/), so we split everything.
 
 Being an engineer myself helps. I can talk through tradeoffs with developers, and I annotate mockups so the intent survives the handoff."
 
@@ -127,7 +129,7 @@ Being an engineer myself helps. I can talk through tradeoffs with developers, an
 3. **Take one big risk per project.** I spent three weeks on a reinforcement-learning enemy AI when a simpler one would have left time for playtesting.
 4. **Build for utility, not hype.** My rushed trend add-ons (Copper Golem, Armor Trims) flopped, while the deep combat systems became my biggest hits."
 
-"Why UX design?"="The part I've always liked most is watching someone use a thing I made without needing help. I started by designing Minecraft maps around what would surprise my best friend next, and later I read over a thousand comments about my add-ons.
+"Why UX design?"="The part I've always liked most is watching someone use a thing I made without needing help. I started by designing Minecraft maps around what would surprise my best friend, [Devin Leung](https://www.linkedin.com/in/devin-leung-a19a4823a/), next, and later I read over a thousand comments about my add-ons.
 
 I'm an engineer too, but I want to get better at the part that comes before the code: understanding people."
 

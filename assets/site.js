@@ -271,8 +271,10 @@
     var a = Math.atan2(dy, dx), head = 11, spread = Math.PI / 5;
     var hx1 = x2 - head * Math.cos(a - spread), hy1 = y2 - head * Math.sin(a - spread);
     var hx2 = x2 - head * Math.cos(a + spread), hy2 = y2 - head * Math.sin(a + spread);
+    // The shaft stops a little short of the tip so its flat end hides inside the head's mitered point
+    var sx = x2 - 3 * Math.cos(a), sy = y2 - 3 * Math.sin(a);
     function f(v) { return v.toFixed(1); }
-    path.setAttribute("d", "M" + f(x1) + " " + f(y1) + "L" + f(x2) + " " + f(y2)
+    path.setAttribute("d", "M" + f(x1) + " " + f(y1) + "L" + f(sx) + " " + f(sy)
       + "M" + f(hx1) + " " + f(hy1) + "L" + f(x2) + " " + f(y2) + "L" + f(hx2) + " " + f(hy2));
   }
 

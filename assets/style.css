@@ -9,15 +9,15 @@
   --muted: #5c5c66;
   --faint: #8a8a94;
   --line: #e2e0da;
-  --accent: #1f6feb;
-  --accent-soft: #e3edff;
-  --accent-ink: #1450b8;
-  --user: #1f6feb;
+  --accent: #495362;
+  --accent-soft: #e7e9ed;
+  --accent-ink: #343c48;
+  --user: #495362;
   --user-ink: #ffffff;
   --shadow: 0 1px 2px rgba(20, 20, 30, .05), 0 8px 24px rgba(20, 20, 30, .07);
   --btn-mix: 82%; /* beveled buttons darken the accent in light mode for white text */
   --btn-ink: #ffffff;
-  --btn-edge: #16161a;
+  --btn-edge: #e9e7e1; /* light mode outlines buttons in a very pale warm gray */
   --bevel-hi: rgba(255, 255, 255, .55); /* top highlight on neutral beveled buttons */
   --btn-hover: #ffffff; /* neutral beveled button, hovered */
   --bevel: inset 0 -4px 0 rgba(0, 0, 0, .16), inset 0 3px 0 var(--bevel-hi);
@@ -26,6 +26,7 @@
   --bevel-pressed: inset 0 3px 0 rgba(0, 0, 0, .2);
   --wrap: 1120px;
   --prose: 680px;
+  --tile-ink: #16161a; /* text on case study tiles and chat cards */
   --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   color-scheme: light;
 }
@@ -46,6 +47,7 @@
   --btn-mix: 100%;
   --btn-ink: #111114;
   --btn-edge: #000000;
+  --tile-ink: #ffffff;
   --bevel-hi: rgba(255, 255, 255, .08);
   --btn-hover: #292931;
   color-scheme: dark;
@@ -68,6 +70,7 @@
     --btn-mix: 100%;
     --btn-ink: #111114;
     --btn-edge: #000000;
+    --tile-ink: #ffffff;
     --bevel-hi: rgba(255, 255, 255, .08);
     --btn-hover: #292931;
     color-scheme: dark;
@@ -81,26 +84,27 @@
 }
 .view-toggle svg { width: 16px; height: 16px; }
 
-/* Per-project accents (used on case study pages and cards) */
-.theme-ur { --accent: #8b28a8; --accent-soft: #faedff; --accent-ink: #58186c; --tile: #230d2d; }
-.theme-ez { --accent: #059669; --accent-soft: #ecfdf5; --accent-ink: #064e3b; --tile: #07261a; }
-.theme-hd { --accent: #34509e; --accent-soft: #e6ebf8; --accent-ink: #243a7c; --tile: #1a2140; }
-.theme-wc { --accent: #c46a00; --accent-soft: #fef3c7; --accent-ink: #803b00; --tile: #2b1c07; }
-:root[data-theme="dark"] .theme-ur { --accent: #d868ee; --accent-soft: #2e1038; --accent-ink: #f5d6ff; }
-:root[data-theme="dark"] .theme-ez { --accent: #34d399; --accent-soft: #092a1d; --accent-ink: #d1fae5; }
-:root[data-theme="dark"] .theme-hd { --accent: #93a8f0; --accent-soft: #1a2242; --accent-ink: #d3dcfa; }
-:root[data-theme="dark"] .theme-wc { --accent: #f59e0b; --accent-soft: #2e1d08; --accent-ink: #fde68a; }
+/* Per-project accents (used on case study pages and cards); --tile is the Grid tile / chat card background,
+   --tile-deep the dark shade behind their pictures (it shows around transparent art like the Eezy Receipt phone) */
+.theme-ur { --accent: #8b28a8; --accent-soft: #faedff; --accent-ink: #58186c; --tile: #faedff; --tile-deep: #230d2d; }
+.theme-ez { --accent: #059669; --accent-soft: #ecfdf5; --accent-ink: #064e3b; --tile: #ecfdf5; --tile-deep: #07261a; }
+.theme-hd { --accent: #34509e; --accent-soft: #e6ebf8; --accent-ink: #243a7c; --tile: #e6ebf8; --tile-deep: #1a2140; }
+.theme-wc { --accent: #c46a00; --accent-soft: #fef3c7; --accent-ink: #803b00; --tile: #fef3c7; --tile-deep: #2b1c07; }
+:root[data-theme="dark"] .theme-ur { --accent: #d868ee; --accent-soft: #2e1038; --accent-ink: #f5d6ff; --tile: #230d2d; }
+:root[data-theme="dark"] .theme-ez { --accent: #34d399; --accent-soft: #092a1d; --accent-ink: #d1fae5; --tile: #07261a; }
+:root[data-theme="dark"] .theme-hd { --accent: #93a8f0; --accent-soft: #1a2242; --accent-ink: #d3dcfa; --tile: #1a2140; }
+:root[data-theme="dark"] .theme-wc { --accent: #f59e0b; --accent-soft: #2e1d08; --accent-ink: #fde68a; --tile: #2b1c07; }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .theme-ur { --accent: #d868ee; --accent-soft: #2e1038; --accent-ink: #f5d6ff; }
-  :root:not([data-theme="light"]) .theme-ez { --accent: #34d399; --accent-soft: #092a1d; --accent-ink: #d1fae5; }
-  :root:not([data-theme="light"]) .theme-hd { --accent: #93a8f0; --accent-soft: #1a2242; --accent-ink: #d3dcfa; }
-  :root:not([data-theme="light"]) .theme-wc { --accent: #f59e0b; --accent-soft: #2e1d08; --accent-ink: #fde68a; }
+  :root:not([data-theme="light"]) .theme-ur { --accent: #d868ee; --accent-soft: #2e1038; --accent-ink: #f5d6ff; --tile: #230d2d; }
+  :root:not([data-theme="light"]) .theme-ez { --accent: #34d399; --accent-soft: #092a1d; --accent-ink: #d1fae5; --tile: #07261a; }
+  :root:not([data-theme="light"]) .theme-hd { --accent: #93a8f0; --accent-soft: #1a2242; --accent-ink: #d3dcfa; --tile: #1a2140; }
+  :root:not([data-theme="light"]) .theme-wc { --accent: #f59e0b; --accent-soft: #2e1d08; --accent-ink: #fde68a; --tile: #2b1c07; }
 }
 
 /* ---------- Base ---------- */
 *, *::before, *::after { box-sizing: border-box; }
 /* Always reserve the scrollbar's space, so the header holds still between short pages (Ask me) and long ones (Grid) */
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scrollbar-gutter: stable; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scrollbar-gutter: stable; background: var(--bg); }
 body {
   margin: 0;
   background: var(--bg);
@@ -113,7 +117,7 @@ a { color: inherit; text-decoration-color: color-mix(in srgb, currentColor 35%, 
 a:hover { text-decoration-color: currentColor; }
 
 /* Inline content links */
-.prose a, .lede a, .meta a, .about a, .cs-hero a, .credits a {
+.prose a, .lede a, .meta a, .about a, .cs-hero a, .credits a, .bubble p a, .bubble li a {
   color: var(--accent);
   font-weight: 500;
   text-decoration: underline;
@@ -124,7 +128,7 @@ a:hover { text-decoration-color: currentColor; }
   margin: -1px -3px;
   transition: color .2s ease, text-decoration-color .2s ease, text-underline-offset .2s ease, background-color .2s ease;
 }
-.prose a:hover, .lede a:hover, .meta a:hover, .about a:hover, .cs-hero a:hover, .credits a:hover {
+.prose a:hover, .lede a:hover, .meta a:hover, .about a:hover, .cs-hero a:hover, .credits a:hover, .bubble p a:hover, .bubble li a:hover {
   color: var(--accent);
   background-color: var(--accent-soft);
   text-decoration-color: var(--accent);
@@ -186,9 +190,7 @@ button { font: inherit; color: inherit; }
   display: block;
   flex: none;
   background: var(--surface);
-  transition: border-color .2s ease, transform .2s ease;
 }
-.brand:hover .mark { border-color: var(--accent); transform: scale(1.05); }
 .nav { display: flex; align-items: center; gap: 22px; font-size: 15px; color: var(--muted); }
 .nav a { text-decoration: none; }
 .nav a:hover, .nav a[aria-current="page"] { color: var(--text); }
@@ -214,15 +216,11 @@ button { font: inherit; color: inherit; }
 .chat-page { min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; }
 .chat-main { flex: 1; display: flex; flex-direction: column; width: 100%; max-width: 820px; margin: 0 auto; padding: 0 20px 150px; }
 .intro { text-align: center; padding: 11vh 0 28px; transition: opacity .35s ease, transform .35s ease; }
-.intro .display { max-width: 16ch; margin: 0 auto; }
-.intro .lede { max-width: 54ch; margin: 22px auto 0; }
-.typing-dots { display: inline-flex; gap: .12em; margin-left: .1em; vertical-align: .1em; }
-.typing-dots i { width: .16em; height: .16em; background: var(--accent); animation: blink 1.2s infinite ease-in-out; }
-.typing-dots i:nth-child(2) { animation-delay: .15s; }
-.typing-dots i:nth-child(3) { animation-delay: .3s; }
+/* The hero title is two lines (a <br> after "use,") at the same size on both home pages, so it may run wider than the chat column */
+.intro .display { width: min(1040px, calc(100vw - 32px)); margin-left: calc((100% - min(1040px, calc(100vw - 32px))) / 2); }
 @keyframes blink { 0%, 80%, 100% { opacity: .25; transform: translateY(0); } 40% { opacity: 1; transform: translateY(-.06em); } }
 
-.guide { margin-top: 30px; }
+.guide { margin-top: 40px; }
 .guide h2 { font-size: 14px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--faint); margin: 0 0 12px; text-align: center; }
 .chips { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
 .chip {
@@ -255,6 +253,8 @@ button { font: inherit; color: inherit; }
   display: inline-block;
   white-space: nowrap;
 }
+/* Words are inline-blocks, which a link's underline doesn't reach, so linked words carry it themselves */
+.bubble a .ai-word { text-decoration: inherit; }
 
 .ai-char {
   display: inline;
@@ -302,12 +302,14 @@ button { font: inherit; color: inherit; }
 .attach.cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .mini-card {
   display: flex; flex-direction: column; text-decoration: none; overflow: hidden;
-  background: var(--tile, #1d1d24); color: #fff; min-height: 100%;
+  background: var(--tile, var(--surface)); color: var(--tile-ink); min-height: 100%;
   transition: transform .25s ease;
 }
 .mini-card:hover { transform: translateY(-2px); }
 /* The whole picture, never cropped: most are 16:9, and the rest sit centered on a darker band */
-.mini-card img { aspect-ratio: 16 / 9; object-fit: contain; width: 100%; background: color-mix(in srgb, var(--tile, #1d1d24) 70%, #000); }
+.mini-card img { aspect-ratio: 16 / 9; object-fit: contain; width: 100%; background: var(--tile-deep, color-mix(in srgb, var(--surface) 92%, #000)); }
+:root[data-theme="dark"] .mini-card img { background: color-mix(in srgb, var(--tile, #1d1d24) 70%, #000); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .mini-card img { background: color-mix(in srgb, var(--tile, #1d1d24) 70%, #000); } }
 /* The study's color divides the picture from the text on a slant, like the Grid tiles and the case study banners */
 .mini-card > span { position: relative; }
 .mini-slant { position: absolute; left: -1px; bottom: calc(100% - 1px); width: calc(100% + 2px); height: auto; overflow: visible; pointer-events: none; }
@@ -327,6 +329,7 @@ button { font: inherit; color: inherit; }
 .attach figure img { border: 1px solid var(--line); background: #0b0b10; }
 .attach figcaption { font-size: 13px; color: var(--muted); margin-top: 6px; }
 .attach.pair { grid-template-columns: 1fr 1fr; }
+.attach .video-frame img { border: 0; } /* YouTube posters in answers: the player frame is the border */
 .attach .stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; }
 .attach .stat-row div { background: var(--raised); padding: 12px; }
 .attach .stat-row b { display: block; font-size: 24px; letter-spacing: -.02em; color: var(--accent); }
@@ -367,8 +370,14 @@ button { font: inherit; color: inherit; }
 
 
 /* ---------- Classic view ---------- */
-.classic-hero { padding-top: 80px; padding-bottom: 40px; }
-.classic-hero .display { max-width: 17ch; }
+.classic-hero { padding-top: 80px; padding-bottom: 0; } /* the gap to "Selected work" matches the one before "About" */
+.hero-title { font-size: clamp(34px, 5.2vw, 60px); line-height: 1.05; }
+/* Phones: "then watch where they get stuck." no longer fits one line at the minimum size, so the forced
+   break would strand "use," alone. Let the words flow instead, with evenly balanced lines. */
+@media (max-width: 640px) {
+  .hero-title br { display: none; }
+  .hero-title { text-wrap: balance; }
+}
 .classic-hero .lede { margin-top: 24px; max-width: 60ch; }
 
 .section-head { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; margin: 136px 0 56px; }
@@ -379,20 +388,14 @@ button { font: inherit; color: inherit; }
 .bento { display: grid; grid-template-columns: repeat(6, 1fr); grid-auto-rows: minmax(250px, auto); gap: 18px; }
 .tile {
   position: relative; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden;
-  padding: 26px; text-decoration: none; color: #fff; background: var(--tile);
+  padding: 26px; text-decoration: none; color: var(--tile-ink); background: var(--tile);
   isolation: isolate; transition: transform .3s ease;
 }
 .tile:hover { transform: translateY(-3px); }
-.tile::after { /* faint facet pattern */
-  content: ""; position: absolute; inset: 0; z-index: -1; opacity: .16;
-  background: repeating-linear-gradient(135deg, rgba(255,255,255,.35) 0 1px, transparent 1px 22px);
-  mask-image: radial-gradient(circle at 90% 10%, #000 0, transparent 60%);
-  -webkit-mask-image: radial-gradient(circle at 90% 10%, #000 0, transparent 60%);
-}
 .tile { justify-content: flex-start; }
 .tile > div { width: 100%; }
 /* width: auto overrides `.tile > div { width: 100% }` so the negative margins bleed the image to both tile edges */
-.tile .tile-img { position: relative; flex: 1; width: auto; min-height: 170px; margin: 22px -26px -26px; }
+.tile .tile-img { position: relative; flex: 1; width: auto; min-height: 170px; margin: 22px -26px -26px; background: var(--tile-deep, transparent); }
 /* The study's color divides the text from the art on a slant, at the case study banners' angle (about 2%) */
 /* 1px wider on each side so sub-pixel tile widths never leave a sliver of art showing; the tile clips the extra */
 .tile-slant { position: absolute; left: -1px; top: -1px; z-index: 1; width: calc(100% + 2px); height: auto; overflow: visible; pointer-events: none; }
@@ -403,17 +406,21 @@ button { font: inherit; color: inherit; }
   letter-spacing: .06em;
   white-space: nowrap;
   margin: 0 0 12px;
+  color: var(--accent);
 }
+/* Dark tiles keep their lighter eyebrow tints (set per tile as --eyebrow) */
+:root[data-theme="dark"] .tile .eyebrow { color: var(--eyebrow, var(--accent)); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tile .eyebrow { color: var(--eyebrow, var(--accent)); } }
 .tile h3 { font-size: clamp(26px, 3vw, 36px); line-height: 1.05; max-width: 100%; }
 .tile p:not(.eyebrow) { margin: 10px 0 0; font-size: 15px; line-height: 1.5; max-width: 48ch; opacity: .85; }
 .tile .view {
   position: absolute; right: 18px; bottom: 18px; font-size: 14px; font-weight: 600; color: #fff; padding: 8px 14px 11px;
 }
 .tile .view::after { content: " \2192"; }
-.tile-ur { grid-column: span 4; grid-row: span 2; background: #230d2d; }
-.tile-ez { grid-column: span 2; grid-row: span 2; background: #07261a; }
-.tile-hd { grid-column: span 3; background: #1a2140; }
-.tile-yt, .tile-wc { grid-column: span 3; background: #2b1c07; }
+.tile-ur { grid-column: span 4; grid-row: span 2; }
+.tile-ez { grid-column: span 2; grid-row: span 2; }
+.tile-hd { grid-column: span 3; }
+.tile-yt, .tile-wc { grid-column: span 3; }
 .tile-ur .tile-img { height: 70%; }
 
 .thumbs { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 36px 20px; }
@@ -446,7 +453,7 @@ button { font: inherit; color: inherit; }
 
 /* ---------- Case study ---------- */
 .cs-hero { padding: 72px 0 36px; }
-.cs-hero h1 { max-width: 18ch; }
+.cs-hero h1 { font-size: clamp(32px, 4.4vw, 52px); text-wrap: balance; } /* two lines on desktop */
 .cs-hero .lede { margin-top: 22px; max-width: 60ch; }
 .meta {
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
@@ -485,8 +492,9 @@ figure.fig { margin: 36px 0 0; }
 figure.fig img, figure.fig video { display: block; box-shadow: var(--shadow); width: 100%; height: auto; }
 figure.fig.dark img, figure.fig.dark video { background: #0d0d12; }
 figure.fig.plain img { box-shadow: none; border: 1px solid var(--line); }
+figure.fig.bare img { box-shadow: none; border: 0; background: none; } /* transparent phone renders and logos */
 figure.fig.narrow { max-width: 760px; margin-left: auto; margin-right: auto; }
-figcaption { margin-top: 12px; font-size: 14px; line-height: 1.55; color: var(--muted); max-width: var(--prose); }
+figcaption { margin-top: 12px; font-size: 14px; line-height: 1.55; color: var(--muted); max-width: var(--prose); text-wrap: pretty; }
 figcaption b { color: var(--text); font-weight: 600; }
 
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
@@ -649,13 +657,10 @@ blockquote.q footer { margin-top: 12px; font-size: 13px; font-weight: 400; color
   overflow: hidden;
   text-decoration: none;
   color: inherit;
-  transition: transform .2s ease, box-shadow .2s ease;
+  transition: transform .3s ease; /* same lift as the case study tiles */
   padding: 0 24px 0 0;
 }
-.banner:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow);
-}
+.banner:hover { transform: translateY(-3px); }
 .banner-img {
   width: 240px;
   height: 130px;
@@ -721,14 +726,14 @@ blockquote.q footer { margin-top: 12px; font-size: 13px; font-weight: 400; color
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  padding: 5px 10px 8px;
+  padding: 6px 10px 7px; /* 1px more on top than the bevel alone suggests, so text and icon sit on the face's center */
   font-size: 13px;
   font-weight: 500;
   line-height: 1;
 }
 /* Chips link to where the skill is used; undo the inline-link styling `.about a` gives them */
 .about a.tool-chip {
-  text-decoration: none; font-weight: 500; padding: 5px 10px 8px; margin: 0; cursor: pointer;
+  text-decoration: none; font-weight: 500; padding: 6px 10px 7px; margin: 0; cursor: pointer;
 }
 .tool-chip svg {
   width: 15px;
@@ -783,7 +788,7 @@ mark.skill-flash {
 }
 .toolkit-arrow {
   position: absolute; left: 0; top: 0; width: 100%; height: 100%; z-index: 1; overflow: visible;
-  fill: none; stroke: var(--accent); stroke-width: 2.5; stroke-linecap: square; stroke-linejoin: miter;
+  fill: none; stroke: var(--accent); stroke-width: 2.5; stroke-linecap: butt; stroke-linejoin: miter;
 }
 @media (max-width: 900px) {
   .toolkit-note { top: -30px; }
@@ -808,14 +813,15 @@ mark.skill-flash {
 
 /* ---------- YouTube placeholders (the player loads on click) ---------- */
 .yt-lite img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.yt-play { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(0, 0, 0, .12); transition: background .2s ease; }
+/* a.yt-play outranks the inline-link rules (.cs-hero a:hover etc.), whose tinted hover background would cover the poster */
+a.yt-play { position: absolute; inset: 0; display: grid; place-items: center; padding: 0; margin: 0; background: rgba(0, 0, 0, .12); transition: background .2s ease; }
 .yt-play svg {
   width: 72px; height: auto; background: rgba(18, 18, 22, .8); border: 2px solid #000;
   box-shadow: inset 0 -5px 0 rgba(0, 0, 0, .4), inset 0 4px 0 rgba(255, 255, 255, .14); transition: background-color .2s ease;
 }
 .yt-play svg rect { fill: none; }
 .yt-play svg path { fill: #fff; }
-.yt-play:hover, .yt-play:focus-visible { background: rgba(0, 0, 0, 0); }
+a.yt-play:hover, a.yt-play:focus-visible { background: rgba(0, 0, 0, 0); }
 .yt-play:hover svg, .yt-play:focus-visible svg { background: #e62117; }
 
 /* ---------- Contact cards (About) ---------- */
@@ -907,7 +913,7 @@ mark.skill-flash {
 .cs-banner-art { overflow: hidden; } /* the banner itself doesn't clip, so the slant line can draw past its edge */
 .cs-slant { position: absolute; left: 0; bottom: -1px; width: 100%; height: clamp(36px, 5vw, 72px); overflow: visible; pointer-events: none; }
 .cs-slant .cut { fill: var(--bg); }
-.tile-slant .cut, .mini-slant .cut { fill: var(--tile, #1d1d24); }
+.tile-slant .cut, .mini-slant .cut { fill: var(--tile, var(--surface)); }
 .tile-slant .line, .mini-slant .line { fill: none; stroke: var(--accent); stroke-width: 3; vector-effect: non-scaling-stroke; }
 .cs-slant .line { fill: none; stroke: var(--accent); stroke-width: 1.5; opacity: .8; vector-effect: non-scaling-stroke; }
 .cs-banner + main .cs-hero { padding-top: 24px; }
@@ -932,24 +938,26 @@ mark.skill-flash {
    off screen, and anything with no partner on the other page slides with its page (the :only-child rules). */
 .site-header { view-transition-name: site-header; }
 .brand { view-transition-name: site-brand; }
-.hero-title > span { display: inline-block; }
-.hero-title > span:nth-child(1) { view-transition-name: hero-w1; }
-.hero-title > span:nth-child(2) { view-transition-name: hero-w2; }
-.hero-title > span:nth-child(3) { view-transition-name: hero-w3; }
-.hero-title > span:nth-child(4) { view-transition-name: hero-w4; }
-.hero-title > span:nth-child(5) { view-transition-name: hero-w5; }
-.hero-title > span:nth-child(6) { view-transition-name: hero-w6; }
-.hero-title > span:nth-child(7) { view-transition-name: hero-w7; }
-.hero-title > span:nth-child(8) { view-transition-name: hero-w8; }
-.hero-title > span:nth-child(9) { view-transition-name: hero-w9; }
-.hero-title > span:nth-child(10) { view-transition-name: hero-w10; }
-.hero-title > span:nth-child(11) { view-transition-name: hero-w11; }
+.hero-title > span { display: inline-block; } /* named by span count (nth-of-type), so the <br> between the lines doesn't shift them */
+.hero-title > span:nth-of-type(1) { view-transition-name: hero-w1; }
+.hero-title > span:nth-of-type(2) { view-transition-name: hero-w2; }
+.hero-title > span:nth-of-type(3) { view-transition-name: hero-w3; }
+.hero-title > span:nth-of-type(4) { view-transition-name: hero-w4; }
+.hero-title > span:nth-of-type(5) { view-transition-name: hero-w5; }
+.hero-title > span:nth-of-type(6) { view-transition-name: hero-w6; }
+.hero-title > span:nth-of-type(7) { view-transition-name: hero-w7; }
+.hero-title > span:nth-of-type(8) { view-transition-name: hero-w8; }
+.hero-title > span:nth-of-type(9) { view-transition-name: hero-w9; }
+.hero-title > span:nth-of-type(10) { view-transition-name: hero-w10; }
+.hero-title > span:nth-of-type(11) { view-transition-name: hero-w11; }
 .hero-title.vt-off > span { view-transition-name: none; }
 
 ::view-transition-group(*),
 ::view-transition-old(*),
 ::view-transition-new(*) { animation-duration: .55s; animation-timing-function: cubic-bezier(.65, 0, .25, 1); }
 ::view-transition-old(root), ::view-transition-new(root) { mix-blend-mode: normal; }
+/* The page color behind the sliding snapshots; without it the browser's white canvas flashes through */
+::view-transition { background: var(--bg); }
 :root[data-slide="forward"]::view-transition-old(root),
 :root[data-slide="forward"]::view-transition-old(*):only-child { animation-name: vt-out-left; }
 :root[data-slide="forward"]::view-transition-new(root),

@@ -13,7 +13,7 @@
           sub: "The HUD, icons, and color system for a tactics game where both sides move at once", theme: "theme-ur" },
     ez: { href: "eezy-receipt.html", img: "assets/img/ez/screen-3.webp", title: "Eezy Receipt",
           eyebrow: "Mobile Usability Redesign",
-          sub: "A drag-only MVP testers couldn't figure out, redesigned into a split anyone can finish", theme: "theme-ez" },
+          sub: "A receipt-splitting app where claiming your items is one tap", theme: "theme-ez" },
     hd: { href: "hedron.html", img: "assets/img/hd/card-back.webp", title: "Hedron³",
           eyebrow: "B2B Workflow & Brand Identity",
           sub: "A logo, business card, and a five-step guided workflow for the startup I co-founded", theme: "theme-hd" },
@@ -51,7 +51,7 @@
     "Tell me about Eezy Receipt": {
       keys: [["eezy",6], ["easy receipt",6], ["receipt",5], ["split",4], ["splitting",4], ["bill",3], ["mobile",2], ["app",1], ["ios",2]],
       cards: ["ez"],
-      stats: [["3 of 5", "testers couldn't tell how to assign items"], ["2.8 / 5", "average confidence finishing a split alone"], ["16", "iOS testers on TestFlight"]],
+      stats: [["16", "iOS testers on TestFlight"], ["iOS + web", "one design system, light and dark themes"], ["7", "person team, with me as designer and Scrum Master"]],
       follow: ["How do you use feedback?", "How do you handle accessibility?", "How do you work with a team?"]
     },
     "Tell me about Hedron³": {
@@ -133,7 +133,7 @@
     },
     "Do you do motion design?": {
       keys: [["motion",6], ["video",5], ["animation",5], ["animate",4], ["trailer",6], ["davinci",5], ["editing",4], ["edit",3]],
-      links: [["Watch the trailer", "https://youtu.be/35AqF1ij6UQ"]],
+      videos: [["35AqF1ij6UQ", "Uncoded Resolve trailer", "assets/img/ur/poster-trailer.webp"], ["tGaxgyy-COs", "Eezy Receipt launch video", "assets/img/ez/poster-launch.webp"]],
       follow: ["Show me your visual design", "Tell me about Uncoded Resolve", "What tools do you use?"]
     },
     "How do you work with a team?": {
@@ -282,7 +282,13 @@
   var last = null, busy = false;
 
   function esc(s) { return s.replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
-  function inline(s) { return esc(s).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>"); }
+  // **bold** and [linked text](url). Web links open in a new tab; site pages (e.g. hedron.html) open in place.
+  function inline(s) {
+    return esc(s).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>").replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, function (m, text, url) {
+      if (/^(javascript|data):/i.test(url)) return text;
+      return '<a href="' + url + '"' + (/^https?:/i.test(url) ? ' target="_blank" rel="noopener noreferrer"' : "") + ">" + text + "</a>";
+    });
+  }
   function block(s) {
     var lines = s.split("\n");
     if (/^\d+\.\s/.test(lines[0])) {
@@ -319,6 +325,17 @@
       var im = el("div", "attach");
       entry.images.forEach(function (x) { im.appendChild(el("figure", null, '<img src="' + x[0] + '" alt="' + esc(x[1]) + '" loading="lazy" style="max-width:360px"><figcaption>' + esc(x[1]) + "</figcaption>")); });
       frag.appendChild(im);
+    }
+    if (entry.videos) { // [YouTube id, title, local poster]: the same click-to-load player as the case studies (site.js)
+      var v = el("div", "attach pair");
+      entry.videos.forEach(function (x) {
+        v.appendChild(el("figure", null, '<div class="video-frame yt-lite" data-embed="https://www.youtube-nocookie.com/embed/' + x[0] + '?rel=0" data-title="' + esc(x[1]) + '">'
+          + '<img src="' + x[2] + '" alt="" loading="lazy" decoding="async">'
+          + '<a class="yt-play" href="https://www.youtube.com/watch?v=' + x[0] + '" aria-label="Play video: ' + esc(x[1]) + '">'
+          + '<svg viewBox="0 0 68 48" aria-hidden="true"><rect width="68" height="48" rx="0"/><path d="M27 15l18 9-18 9z"/></svg></a></div>'
+          + "<figcaption>" + esc(x[1]) + "</figcaption>"));
+      });
+      frag.appendChild(v);
     }
     if (entry.cards) {
       var c = el("div", "attach cards");
@@ -391,7 +408,8 @@
         processText(n.nodeValue);
       } else if (n.nodeType === Node.ELEMENT_NODE) {
         var tag = n.tagName.toLowerCase();
-        actions.push({ type: "open", tag: tag, className: n.className });
+        var attrs = tag === "a" ? { href: n.getAttribute("href"), target: n.getAttribute("target"), rel: n.getAttribute("rel") } : null;
+        actions.push({ type: "open", tag: tag, className: n.className, attrs: attrs });
         for (var j = 0; j < n.childNodes.length; j++) {
           walk(n.childNodes[j]);
         }
@@ -423,6 +441,7 @@
       if (act.type === "open") {
         var elem = document.createElement(act.tag);
         if (act.className) elem.className = act.className;
+        if (act.attrs) Object.keys(act.attrs).forEach(function (k) { if (act.attrs[k]) elem.setAttribute(k, act.attrs[k]); });
         var parent = stack[stack.length - 1];
         parent.insertBefore(elem, cursor);
         if (act.tag !== "br" && act.tag !== "hr" && act.tag !== "img") {
@@ -628,7 +647,7 @@
   // The answers are kept for this tab too, so a saved thread is back on the page before its first frame.
   // Arriving from another page slides this one in (style.css, "Page slides"), and the browser cancels the
   // slide if the intro it started with disappears halfway through.
-  var ANSWERS = "assets/answers.txt?v=20260927a", ANSWERS_KEY = "portfolio_answers";
+  var ANSWERS = "assets/answers.txt?v=20260929c", ANSWERS_KEY = "portfolio_answers";
   var cached = null;
   try { cached = JSON.parse(sessionStorage.getItem(ANSWERS_KEY)); } catch (e) {}
   if (cached && cached.url === ANSWERS && typeof cached.text === "string") {

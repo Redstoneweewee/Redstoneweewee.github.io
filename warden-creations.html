@@ -9,7 +9,11 @@
   <link rel="icon" type="image/webp" href="assets/img/me.webp?v=20260925c">
   <link rel="shortcut icon" type="image/webp" href="assets/img/me.webp?v=20260925c">
   <link rel="apple-touch-icon" href="assets/img/me.webp?v=20260925c">
-  <link rel="stylesheet" href="assets/style.css?v=20260927c">
+  <link rel="stylesheet" href="assets/style.css?v=20260929i">
+  <!-- Pages slide into each other in site order (style.css, "Page slides") -->
+  <style>@media (prefers-reduced-motion: no-preference) { @view-transition { navigation: auto; } }</style>
+  <!-- Hold the first frame until #page-end (after the scripts) is parsed, so the slide starts from the finished page -->
+  <link rel="expect" href="#page-end" blocking="render">
 </head>
 <body class="theme-wc">
 <a class="skip" href="#main">Skip to content</a>
@@ -19,10 +23,12 @@
     <a class="brand" href="./"><img class="mark" src="assets/img/me.webp?v=20260925c" alt="Leifeng Chen" width="32" height="32">Leifeng Chen</a>
     <nav class="view-toggle" aria-label="Switch view">
       <a href="./"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg><span>Ask me</span></a>
-      <a href="work.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5"/></svg><span>Grid</span></a>
+      <a href="work.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7.5" height="7.5" rx="0"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="0"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="0"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="0"/></svg><span>Grid</span></a>
     </nav>
   </div>
 </header>
+
+<div class="cs-banner" style="--focus: 50% 0%"><img src="assets/img/wc/banner-fortify.webp" alt="Minecraft Fortify title over four armored fighters in blue, red, green, and white themed arenas" fetchpriority="high" width="1920" height="907"><svg class="cs-slant" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path class="cut" d="M0 58L1440 97V100H0Z"/><path class="line" d="M0 58L1440 97"/></svg></div>
 
 <main id="main" class="wrap">
   <section class="cs-hero">
@@ -36,7 +42,7 @@
       <div><dt>Outcome</dt><dd>11 add-ons with 3.6M+ downloads · 64.7K YouTube subscribers · 6,000+ Discord members</dd></div>
       <div class="meta-wide"><dt>Team &amp; credits</dt><dd>Solo since 2021. Early partner: <a href="https://www.linkedin.com/in/devin-leung-a19a4823a/" target="_blank" rel="noopener noreferrer">Devin Leung</a>, who co-edited our early videos and helped with design ideas.</dd></div>
     </dl>
-    <figure class="cover"><div class="video-frame yt-lite" data-embed="https://www.youtube-nocookie.com/embed/videoseries?list=UULP6RfpSgp4qwBqF-PX5-gueg&amp;rel=0" data-title="Warden Creations on YouTube, most popular uploads"><img src="assets/img/yt/poster-fortify.webp" alt="" fetchpriority="high" width="1120" height="630"><a class="yt-play" href="https://www.youtube.com/watch?v=Q8KTYwHKf10&amp;list=UULP6RfpSgp4qwBqF-PX5-gueg" aria-label="Play video: Warden Creations on YouTube, most popular uploads"><svg viewBox="0 0 68 48" aria-hidden="true"><rect width="68" height="48" rx="14"/><path d="M27 15l18 9-18 9z"/></svg></a></div></figure>
+    <figure class="cover"><div class="video-frame yt-lite" data-embed="https://www.youtube-nocookie.com/embed/videoseries?list=UULP6RfpSgp4qwBqF-PX5-gueg&amp;rel=0" data-title="Warden Creations on YouTube, most popular uploads"><img src="assets/img/yt/poster-fortify.webp" alt="" width="1120" height="630"><a class="yt-play" href="https://www.youtube.com/watch?v=Q8KTYwHKf10&amp;list=UULP6RfpSgp4qwBqF-PX5-gueg" aria-label="Play video: Warden Creations on YouTube, most popular uploads"><svg viewBox="0 0 68 48" aria-hidden="true"><rect width="68" height="48" rx="0"/><path d="M27 15l18 9-18 9z"/></svg></a></div></figure>
     <div class="link-chips"><a href="https://www.youtube.com/@warden-creations" target="_blank" rel="noopener noreferrer">▶ Warden Creations on YouTube</a></div>
   </section>
 
@@ -66,8 +72,8 @@
       <p>That momentum culminated in <b>Simple Arsenal</b>, where I pushed combat further with modular weapons and custom crafting benches. When Simple Arsenal dropped, downloads surged from a 200/day baseline to <b>39,267 downloads in 2 days</b> on CurseForge alone.</p>
     </div>
     <div class="grid-2" style="align-items:center">
-      <figure class="fig dark reveal"><img src="assets/img/wc/curseforge-spike.webp" alt="CurseForge download chart showing a vertical spike to 39,267 downloads in two days" loading="lazy" width="939" height="816"><figcaption><b>CurseForge spike.</b> Simple Arsenal surging to 39,267 downloads in 2 days (March 14–15, 2025).</figcaption></figure>
-      <figure class="fig dark reveal"><img src="assets/img/wc/simple-arsenal-teaser.webp" alt="In-game screenshot of Simple Arsenal modular weapons and custom items" loading="lazy" width="1200" height="675"><figcaption><b>Simple Arsenal.</b> Modular weapons, custom crafting benches, and distinct stat tiers.</figcaption></figure>
+      <figure class="fig dark"><img src="assets/img/wc/curseforge-spike.webp" alt="CurseForge download chart showing a vertical spike to 39,267 downloads in two days" loading="lazy" width="939" height="816"><figcaption><b>CurseForge spike.</b> Simple Arsenal surging to 39,267 downloads in 2 days (March 14–15, 2025).</figcaption></figure>
+      <figure class="fig dark"><img src="assets/img/wc/simple-arsenal-teaser.webp" alt="In-game screenshot of Simple Arsenal modular weapons and custom items" loading="lazy" width="1200" height="675"><figcaption><b>Simple Arsenal.</b> Modular weapons, custom crafting benches, and distinct stat tiers.</figcaption></figure>
     </div>
   </section>
 
@@ -76,29 +82,31 @@
       <span class="num">02 · In-Game UX</span>
       <h2 class="h2">The "Wiki-in-a-Tooltip" system</h2>
       <p>Minecraft Bedrock's native UI is rigid: item tooltips only display a title and default durability. For complex add-ons like Minecraft Fortify and Simple Arsenal, weapons had distinct mechanics: windup charges, swing animations, cooldown windows, area-of-effect whirls, and status procs (poison, stun, bash).</p>
-      <p>Rather than directing players to a fandom wiki or Discord FAQ, I engineered an in-game tooltip specification. By overriding Minecraft's font sheet with custom Unicode private-use glyphs (<code>glyph_E0</code>), I injected custom 16×16 pixel-art iconography directly into native item descriptions alongside standardized color-coded rarity tiers.</p>
+      <p>Rather than directing players to a fandom wiki or Discord FAQ, I engineered an in-game tooltip specification. By overriding Minecraft's font sheet with custom Unicode private-use glyphs (<code>glyph_E1</code>), I injected custom 16×16 pixel-art iconography directly into native item descriptions.</p>
     </div>
 
     <div class="badge-grid">
-      <div class="badge-card"><img src="assets/img/wc/icon-attack.webp" alt="Attack damage icon" loading="lazy" decoding="async" width="44" height="44"><strong>Base Damage</strong><span>Direct hit output</span></div>
-      <div class="badge-card"><img src="assets/img/wc/icon-windup.webp" alt="Windup charge icon" loading="lazy" decoding="async" width="44" height="44"><strong>Windup Time</strong><span>Charge before release</span></div>
-      <div class="badge-card"><img src="assets/img/wc/icon-cooldown.webp" alt="Cooldown icon" loading="lazy" decoding="async" width="44" height="44"><strong>Cooldown</strong><span>Recovery window</span></div>
-      <div class="badge-card"><img src="assets/img/wc/icon-duration.webp" alt="Effect duration icon" loading="lazy" decoding="async" width="44" height="44"><strong>Duration</strong><span>Status active period</span></div>
-      <div class="badge-card"><img src="assets/img/wc/icon-stun.webp" alt="Stun effect icon" loading="lazy" decoding="async" width="44" height="44"><strong>Stun Proc</strong><span>Mob disable duration</span></div>
-      <div class="badge-card"><img src="assets/img/wc/icon-poison.webp" alt="Poison icon" loading="lazy" decoding="async" width="44" height="44"><strong>Poison / DoT</strong><span>Damage over time</span></div>
+      <div class="badge-card"><img src="assets/img/wc/icon-attack.webp" alt="Attack damage icon" loading="lazy" decoding="async" width="48" height="48"><strong>Base Damage</strong><span>Direct hit output</span></div>
+      <div class="badge-card"><img src="assets/img/wc/icon-windup.webp" alt="Windup charge icon" loading="lazy" decoding="async" width="48" height="48"><strong>Windup Time</strong><span>Charge before release</span></div>
+      <div class="badge-card"><img src="assets/img/wc/icon-cooldown.webp" alt="Cooldown icon" loading="lazy" decoding="async" width="48" height="48"><strong>Cooldown</strong><span>Recovery window</span></div>
+      <div class="badge-card"><img src="assets/img/wc/icon-duration.webp" alt="Effect duration icon" loading="lazy" decoding="async" width="48" height="48"><strong>Duration</strong><span>Status active period</span></div>
+      <div class="badge-card"><img src="assets/img/wc/icon-stun.webp" alt="Stun effect icon" loading="lazy" decoding="async" width="48" height="48"><strong>Stun Proc</strong><span>Mob disable duration</span></div>
+      <div class="badge-card"><img src="assets/img/wc/icon-poison.webp" alt="Poison icon" loading="lazy" decoding="async" width="48" height="48"><strong>Poison / DoT</strong><span>Damage over time</span></div>
     </div>
 
-    <div class="grid-2" style="margin-top:36px;align-items:center">
-      <figure class="fig plain reveal"><img src="assets/img/wc/rarity-colors.webp" alt="Item rarity color palette matrix for tooltip hierarchy" loading="lazy" width="800" height="600"><figcaption><b>Hierarchy tokens.</b> Common, Rare, Epic, and Legendary color rules that let players instantly evaluate loot value.</figcaption></figure>
-      <div class="prose">
-        <h3 class="h3" style="margin-bottom:12px">Immediate comprehension</h3>
-        <p>A player hovering over an Aetherite Greatsword immediately reads: <b>Attack 12</b>, <b>Windup 0.4s</b>, <b>Cooldown 1.2s</b>, with badge glyphs that match their physical weapon animations.</p>
-        <p>Testing in play sessions confirmed that players stopped asking "what does this weapon do?" and instead asked strategic gameplay questions: "which weapon counters armored vindicators?"</p>
-      </div>
+    <figure class="item-tooltip-demo">
+      <img src="assets/img/wc/tooltip-nexus-bow.webp" alt="In-game tooltip for the Nexus Bow from Fortify Reworked: Normal Attack 1-12 atk, 1.25 secs windup, 0.0 secs cooldown; Special Effect armor-linked, 1-7 casts, 1.5 atk each, each line tagged with its stat glyph" loading="lazy" decoding="async" width="2112" height="1056">
+      <figcaption><b>The real tooltip.</b> Nexus Bow from Fortify Reworked, with each stat line tagged by its glyph.</figcaption>
+    </figure>
+
+    <div class="prose" style="margin-top:36px">
+      <h3 class="h3" style="margin-bottom:12px">Immediate comprehension</h3>
+      <p>A player hovering over the Nexus Bow immediately reads its normal attack, <b>1–12 atk</b>, <b>1.25 secs</b> windup, <b>0.0 secs</b> cooldown, and its armor-linked special effect, <b>1–7 casts</b> at <b>1.5 atk each</b>, with badge glyphs that match the weapon's actual behavior.</p>
+      <p>Testing in play sessions confirmed that players stopped asking "what does this weapon do?" and instead asked strategic gameplay questions: "which weapon counters armored vindicators?"</p>
     </div>
 
-    <figure class="fig video reveal" style="margin-top:36px">
-      <div class="video-frame yt-lite" data-embed="https://www.youtube-nocookie.com/embed/jPPaBNTnGYE?rel=0" data-title="Equipment Tooltips Update showcase"><img src="assets/img/yt/poster-tooltips.webp" alt="" loading="lazy" decoding="async" width="1120" height="630"><a class="yt-play" href="https://www.youtube.com/watch?v=jPPaBNTnGYE" aria-label="Play video: Equipment Tooltips Update showcase"><svg viewBox="0 0 68 48" aria-hidden="true"><rect width="68" height="48" rx="14"/><path d="M27 15l18 9-18 9z"/></svg></a></div>
+    <figure class="fig video" style="margin-top:36px">
+      <div class="video-frame yt-lite" data-embed="https://www.youtube-nocookie.com/embed/jPPaBNTnGYE?rel=0" data-title="Equipment Tooltips Update showcase"><img src="assets/img/yt/poster-tooltips.webp" alt="" loading="lazy" decoding="async" width="1120" height="630"><a class="yt-play" href="https://www.youtube.com/watch?v=jPPaBNTnGYE" aria-label="Play video: Equipment Tooltips Update showcase"><svg viewBox="0 0 68 48" aria-hidden="true"><rect width="68" height="48" rx="0"/><path d="M27 15l18 9-18 9z"/></svg></a></div>
       <figcaption><b>Tooltips update.</b> Showcasing custom item tooltips and glyph-based combat indicators in game.</figcaption>
     </figure>
     <div class="link-chips"><a href="https://youtu.be/jPPaBNTnGYE" target="_blank" rel="noopener">▶ Watch Tooltips Update on YouTube</a></div>
@@ -118,17 +126,17 @@
     </div>
 
     <div class="thumbs" style="margin-top:32px">
-      <figure class="reveal"><img src="assets/img/yt/unbreakable-armor.webp" alt="Unbreakable Armor thumbnail: cracked cyan pixel title, netherite armor pieces, and a crossed-out durability bar" loading="lazy" width="960" height="540"><figcaption><span class="thumb-name">Unbreakable Armor</span><span class="thumb-ctr"><strong>17.7%</strong>CTR</span><span class="thumb-reach"><strong>96K</strong> impressions<br>20.5K views</span></figcaption></figure>
-      <figure class="reveal"><img src="assets/img/yt/simple-arsenal.webp" alt="Simple Arsenal thumbnail: pixel-font title over crafted ingots and ores" loading="lazy" width="960" height="540"><figcaption><span class="thumb-name">Simple Arsenal</span><span class="thumb-ctr"><strong>11.5%</strong>CTR</span><span class="thumb-reach"><strong>191K</strong> impressions<br>137K views</span></figcaption></figure>
-      <figure class="reveal"><img src="assets/img/yt/fortify-reworked-v100.webp" alt="Fortify Reworked thumbnail: red and green armored figures with a large FREE download badge" loading="lazy" width="960" height="540"><figcaption><span class="thumb-name">Fortify Reworked</span><span class="thumb-ctr"><strong>9.7%</strong>CTR</span><span class="thumb-reach"><strong>836K</strong> impressions<br>163K views</span></figcaption></figure>
-      <figure class="reveal"><img src="assets/img/yt/warden-equipment.webp" alt="Warden Equipment thumbnail: a crafting grid with a red arrow pointing to the armor" loading="lazy" width="748" height="421"><figcaption><span class="thumb-name">Warden Equipment</span><span class="thumb-ctr"><strong>9.7%</strong>CTR</span><span class="thumb-reach"><strong>250K</strong> impressions<br>48K views</span></figcaption></figure>
-      <figure class="reveal"><img src="assets/img/yt/copper-equipment.webp" alt="Copper Tools v3.3 thumbnail: bold orange title over copper tools" loading="lazy" width="960" height="540"><figcaption><span class="thumb-name">Copper Equipment</span><span class="thumb-ctr"><strong>9.4%</strong>CTR</span><span class="thumb-reach"><strong>61K</strong> impressions<br>19K views</span></figcaption></figure>
-      <figure class="reveal"><img src="assets/img/yt/fortify-v3.webp" alt="Fortify version 3 thumbnail: a collage of armored characters with the Fortify logo" loading="lazy" width="960" height="540"><figcaption><span class="thumb-name">Fortify v3</span><span class="thumb-ctr"><strong>8.9%</strong>CTR</span><span class="thumb-reach"><strong>233K</strong> impressions<br>90.2K views</span></figcaption></figure>
+      <figure><img src="assets/img/yt/unbreakable-armor.webp" alt="Unbreakable Armor thumbnail: cracked cyan pixel title, netherite armor pieces, and a crossed-out durability bar" loading="lazy" width="960" height="540"><figcaption><span class="thumb-name">Unbreakable Armor</span><span class="thumb-ctr"><strong>17.7%</strong>CTR</span><span class="thumb-reach"><strong>96K</strong> impressions<br>20.5K views</span></figcaption></figure>
+      <figure><img src="assets/img/yt/simple-arsenal.webp" alt="Simple Arsenal thumbnail: pixel-font title over crafted ingots and ores" loading="lazy" width="960" height="540"><figcaption><span class="thumb-name">Simple Arsenal</span><span class="thumb-ctr"><strong>11.5%</strong>CTR</span><span class="thumb-reach"><strong>191K</strong> impressions<br>137K views</span></figcaption></figure>
+      <figure><img src="assets/img/yt/fortify-reworked-v100.webp" alt="Fortify Reworked thumbnail: red and green armored figures with a large FREE download badge" loading="lazy" width="960" height="540"><figcaption><span class="thumb-name">Fortify Reworked</span><span class="thumb-ctr"><strong>9.7%</strong>CTR</span><span class="thumb-reach"><strong>836K</strong> impressions<br>163K views</span></figcaption></figure>
+      <figure><img src="assets/img/yt/warden-equipment.webp" alt="Warden Equipment thumbnail: a crafting grid with a red arrow pointing to the armor" loading="lazy" width="748" height="421"><figcaption><span class="thumb-name">Warden Equipment</span><span class="thumb-ctr"><strong>9.7%</strong>CTR</span><span class="thumb-reach"><strong>250K</strong> impressions<br>48K views</span></figcaption></figure>
+      <figure><img src="assets/img/yt/copper-equipment.webp" alt="Copper Tools v3.3 thumbnail: bold orange title over copper tools" loading="lazy" width="960" height="540"><figcaption><span class="thumb-name">Copper Equipment</span><span class="thumb-ctr"><strong>9.4%</strong>CTR</span><span class="thumb-reach"><strong>61K</strong> impressions<br>19K views</span></figcaption></figure>
+      <figure><img src="assets/img/yt/fortify-v3.webp" alt="Fortify version 3 thumbnail: a collage of armored characters with the Fortify logo" loading="lazy" width="960" height="540"><figcaption><span class="thumb-name">Fortify v3</span><span class="thumb-ctr"><strong>8.9%</strong>CTR</span><span class="thumb-reach"><strong>233K</strong> impressions<br>90.2K views</span></figcaption></figure>
     </div>
 
     <div class="grid-2" style="margin-top:32px">
-      <figure class="fig dark reveal"><img src="assets/img/wc/stats-sa.webp" alt="YouTube Studio reach analytics card for Simple Arsenal: 11.5% CTR, 191.4K impressions" loading="lazy" width="1200" height="489"><figcaption><b>Simple Arsenal Reach.</b> 11.5% CTR on 191K impressions (YouTube Studio, lifetime).</figcaption></figure>
-      <figure class="fig dark reveal"><img src="assets/img/wc/stats-fortify.webp" alt="YouTube Studio reach analytics card for Fortify Reworked: 9.7% CTR, 835.5K impressions" loading="lazy" width="1200" height="491"><figcaption><b>Fortify Reworked Reach.</b> 9.7% CTR on 836K impressions.</figcaption></figure>
+      <figure class="fig dark"><img src="assets/img/wc/stats-sa.webp" alt="YouTube Studio reach analytics card for Simple Arsenal: 11.5% CTR, 191.4K impressions" loading="lazy" width="1200" height="489"><figcaption><b>Simple Arsenal Reach.</b> 11.5% CTR on 191K impressions (YouTube Studio, lifetime).</figcaption></figure>
+      <figure class="fig dark"><img src="assets/img/wc/stats-fortify.webp" alt="YouTube Studio reach analytics card for Fortify Reworked: 9.7% CTR, 835.5K impressions" loading="lazy" width="1200" height="491"><figcaption><b>Fortify Reworked Reach.</b> 9.7% CTR on 836K impressions.</figcaption></figure>
     </div>
   </section>
 
@@ -141,8 +149,8 @@
     </div>
 
     <div class="grid-2" style="margin-top:28px">
-      <figure class="fig plain reveal"><img src="assets/img/wc/copper-golem.webp" alt="Copper Golem add-on cover art (v1r)" loading="lazy" width="500" height="500"><figcaption><b>Copper Golem (v1r).</b> Built to capitalize on community mob vote hype.</figcaption></figure>
-      <figure class="fig plain reveal"><img src="assets/img/wc/armor-trims.webp" alt="Armor Trims add-on pack icon" loading="lazy" width="600" height="600"><figcaption><b>Armor Trims.</b> Rushed out before the official vanilla snapshot dropped.</figcaption></figure>
+      <figure class="fig plain"><img src="assets/img/wc/copper-golem.webp" alt="Copper Golem add-on cover art (v1r)" loading="lazy" width="500" height="500"><figcaption><b>Copper Golem (v1r).</b> Built to capitalize on community mob vote hype.</figcaption></figure>
+      <figure class="fig plain"><img src="assets/img/wc/armor-trims.webp" alt="Armor Trims add-on pack icon" loading="lazy" width="600" height="600"><figcaption><b>Armor Trims.</b> Rushed out before the official vanilla snapshot dropped.</figcaption></figure>
     </div>
 
     <div class="prose" style="margin-top:32px">
@@ -162,10 +170,10 @@
 
     <div class="grid-2" style="align-items:flex-start;margin-top:28px">
       <div>
-        <figure class="fig dark reveal"><img src="assets/img/wc/discord-feedback.webp" alt="Real Discord suggestion thread: player Valhalla suggesting early game sets for Fortify" loading="lazy" width="655" height="881"><figcaption><b>Game balance &amp; pacing (Discord).</b> A player noting Fortify had too many late-game sets and proposing early-to-mid tier sets (Redstone Musket, Lapis Magic Tome, Wood Club). I responded within 4 minutes to guide the idea to our suggestions pipeline.</figcaption></figure>
+        <figure class="fig dark"><img src="assets/img/wc/discord-feedback.webp" alt="Real Discord suggestion thread: player Valhalla suggesting early game sets for Fortify" loading="lazy" width="655" height="881"><figcaption><b>Game balance &amp; pacing (Discord).</b> A player noting Fortify had too many late-game sets and proposing early-to-mid tier sets (Redstone Musket, Lapis Magic Tome, Wood Club). I responded within 4 minutes to guide the idea to our suggestions pipeline.</figcaption></figure>
       </div>
       <div>
-        <figure class="fig dark reveal"><img src="assets/img/wc/yt-controls-comment.webp" alt="Real YouTube comment: player confused about controls, and Warden Creations explaining Bedrock input mapping" loading="lazy" width="756" height="342"><figcaption><b>Platform input constraints (YouTube).</b> Bedrock addons cannot register custom keybinds. I had to map complex actions (shooting, tactical reloads, weapon abilities, aiming) onto standard clicks and crouches, and personally walk players through the control scheme in the comments.</figcaption></figure>
+        <figure class="fig dark"><img src="assets/img/wc/yt-controls-comment.webp" alt="Real YouTube comment: player confused about controls, and Warden Creations explaining Bedrock input mapping" loading="lazy" width="756" height="342"><figcaption><b>Platform input constraints (YouTube).</b> Bedrock addons cannot register custom keybinds. I had to map complex actions (shooting, tactical reloads, weapon abilities, aiming) onto standard clicks and crouches, and personally walk players through the control scheme in the comments.</figcaption></figure>
         <div class="prose" style="margin-top:24px">
           <h3 class="h3">Why direct replies mattered</h3>
           <p>When an engine doesn't allow custom key rebinding, player confusion is inevitable. Replying directly to players like <code>@KingzillaIY</code> helped demystify the controls and informed how I structured tutorial text and tooltip action verbs in later updates.</p>
@@ -184,8 +192,8 @@
       <p>As my university studies advanced at UC Santa Barbara, I intentionally sunset major add-on development to channel everything I learned about usability, responsive feedback, and systems design into software and product engineering: developing the Daily Nexus mobile apps, building <a href="uncoded-resolve.html">Uncoded Resolve</a>, leading design on <a href="eezy-receipt.html">Eezy Receipt</a>, and co-founding <a href="hedron.html">Hedron³</a>.</p>
     </div>
 
-    <figure class="fig video reveal" style="margin-top:32px">
-      <div class="video-frame yt-lite" data-embed="https://www.youtube-nocookie.com/embed/B-Euqbo0Tuk?rel=0" data-title="Simple Arsenal Crafting Update showcase"><img src="assets/img/yt/poster-simple-arsenal-crafting.webp" alt="" loading="lazy" decoding="async" width="1120" height="630"><a class="yt-play" href="https://www.youtube.com/watch?v=B-Euqbo0Tuk" aria-label="Play video: Simple Arsenal Crafting Update showcase"><svg viewBox="0 0 68 48" aria-hidden="true"><rect width="68" height="48" rx="14"/><path d="M27 15l18 9-18 9z"/></svg></a></div>
+    <figure class="fig video" style="margin-top:32px">
+      <div class="video-frame yt-lite" data-embed="https://www.youtube-nocookie.com/embed/B-Euqbo0Tuk?rel=0" data-title="Simple Arsenal Crafting Update showcase"><img src="assets/img/yt/poster-simple-arsenal-crafting.webp" alt="" loading="lazy" decoding="async" width="1120" height="630"><a class="yt-play" href="https://www.youtube.com/watch?v=B-Euqbo0Tuk" aria-label="Play video: Simple Arsenal Crafting Update showcase"><svg viewBox="0 0 68 48" aria-hidden="true"><rect width="68" height="48" rx="0"/><path d="M27 15l18 9-18 9z"/></svg></a></div>
       <figcaption><b>Simple Arsenal.</b> The final major release: custom crafting systems, weapon tiers, and 138K views.</figcaption>
     </figure>
     <div class="link-chips"><a href="https://www.youtube.com/watch?v=B-Euqbo0Tuk" target="_blank" rel="noopener noreferrer">▶ Watch Simple Arsenal Showcase on YouTube</a></div>
@@ -201,6 +209,7 @@
     <span class="credit">Layout and the talk-to-my-portfolio idea are inspired by <a href="https://www.studio-nikita.com/" target="_blank" rel="noopener noreferrer">Studio Nikita</a> by Nikita Rochiramani (<a href="https://www.awwwards.com/sites/studio-nikita" target="_blank" rel="noopener noreferrer">Awwwards nominee</a>).</span>
   </div>
 </footer>
-<script src="assets/site.js?v=20260926i"></script>
+<script src="assets/site.js?v=20260929f"></script>
+<div id="page-end" hidden></div>
 </body>
 </html>

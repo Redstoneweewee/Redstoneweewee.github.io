@@ -125,9 +125,9 @@
       follow: ["How did you design the in-game tooltips?", "What's a project that flopped?", "Show me your visual design"]
     },
     "How did you design the in-game tooltips?": {
-      keys: [["tooltip",6], ["wiki",6], ["glyph",6], ["inventory",4], ["readability",5], ["readable",4], ["ingame",3], ["badge",4], ["rarity",5]],
+      keys: [["tooltip",6], ["wiki",6], ["glyph",6], ["inventory",4], ["readability",5], ["readable",4], ["ingame",3], ["badge",4]],
       cards: ["wc"],
-      images: [["assets/img/wc/rarity-colors.webp", "Rarity colors: Common, Rare, Epic, and Legendary"]],
+      images: [["assets/img/wc/tooltip-nexus-bow.webp", "Nexus Bow tooltip with stat glyphs"]],
       links: [["Watch the Tooltips Update", "https://youtu.be/jPPaBNTnGYE"]],
       follow: ["Tell me about Warden Creations", "How do you handle accessibility?", "Show me your visual design"]
     },
@@ -322,10 +322,12 @@
     }
     if (entry.cards) {
       var c = el("div", "attach cards");
+      // The study's color as a slanted edge between picture and text, at the case study banners' angle
+      var slant = '<svg class="mini-slant" viewBox="0 0 1000 22" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path class="cut" d="M0 1.5L1000 21V22H0Z"/><path class="line" d="M0 1.5L1000 21"/></svg>';
       entry.cards.forEach(function (id) {
         var k = CASES[id];
         var eyebrowHtml = k.eyebrow ? '<p class="eyebrow">' + esc(k.eyebrow) + '</p>' : '';
-        var a = el("a", "mini-card " + k.theme, '<img src="' + k.img + '" alt="" loading="lazy"><span>' + eyebrowHtml + '<b>' + esc(k.title) + "</b><small>" + esc(k.sub) + "</small><em>View case study →</em></span>");
+        var a = el("a", "mini-card " + k.theme, '<img src="' + k.img + '" alt="" loading="lazy"><span>' + slant + eyebrowHtml + '<b>' + esc(k.title) + "</b><small>" + esc(k.sub) + "</small><em>View case study →</em></span>");
         a.href = k.href; c.appendChild(a);
       });
       frag.appendChild(c);
@@ -345,7 +347,7 @@
   function scrollDown(smooth) {
     window.scrollTo({
       top: document.documentElement.scrollHeight,
-      behavior: (reduce || !smooth) ? "auto" : "smooth"
+      behavior: (reduce || !smooth) ? "instant" : "smooth"
     });
   }
 
@@ -623,9 +625,25 @@
     if (waiting) { var t = waiting; waiting = null; ask(t); }
   }
 
-  fetch("assets/answers.txt?v=20260927a")
-    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
-    .then(function (txt) { buildKB(parseAnswers(txt)); })
-    .catch(function () { FALLBACK.a = ["My answers didn't load, sorry. Try refreshing, or email me and I'll answer myself."]; })
-    .then(start);
+  // The answers are kept for this tab too, so a saved thread is back on the page before its first frame.
+  // Arriving from another page slides this one in (style.css, "Page slides"), and the browser cancels the
+  // slide if the intro it started with disappears halfway through.
+  var ANSWERS = "assets/answers.txt?v=20260927a", ANSWERS_KEY = "portfolio_answers";
+  var cached = null;
+  try { cached = JSON.parse(sessionStorage.getItem(ANSWERS_KEY)); } catch (e) {}
+  if (cached && cached.url === ANSWERS && typeof cached.text === "string") {
+    buildKB(parseAnswers(cached.text));
+    start();
+  } else {
+    // Still loading: at least start in the chat layout, so only the thread fills in late.
+    if (saved.length && intro) { intro.hidden = true; document.body.classList.add("chatting"); }
+    fetch(ANSWERS)
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
+      .then(function (txt) {
+        try { sessionStorage.setItem(ANSWERS_KEY, JSON.stringify({ url: ANSWERS, text: txt })); } catch (e) {}
+        buildKB(parseAnswers(txt));
+      })
+      .catch(function () { FALLBACK.a = ["My answers didn't load, sorry. Try refreshing, or email me and I'll answer myself."]; })
+      .then(start);
+  }
 })();

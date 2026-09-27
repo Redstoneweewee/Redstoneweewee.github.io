@@ -9,7 +9,11 @@
   <link rel="icon" type="image/webp" href="assets/img/me.webp?v=20260925c">
   <link rel="shortcut icon" type="image/webp" href="assets/img/me.webp?v=20260925c">
   <link rel="apple-touch-icon" href="assets/img/me.webp?v=20260925c">
-  <link rel="stylesheet" href="assets/style.css?v=20260927c">
+  <link rel="stylesheet" href="assets/style.css?v=20260929i">
+  <!-- Pages slide into each other in site order (style.css, "Page slides") -->
+  <style>@media (prefers-reduced-motion: no-preference) { @view-transition { navigation: auto; } }</style>
+  <!-- Hold the first frame until #page-end (after the scripts) is parsed, so the slide starts from the finished page -->
+  <link rel="expect" href="#page-end" blocking="render">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -18,14 +22,14 @@
     <a class="brand" href="./"><img class="mark" src="assets/img/me.webp?v=20260925c" alt="Leifeng Chen" width="32" height="32">Leifeng Chen</a>
     <nav class="view-toggle" aria-label="Switch view">
       <a href="./"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg><span>Ask me</span></a>
-      <a href="work.html" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5"/></svg><span>Grid</span></a>
+      <a href="work.html" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7.5" height="7.5" rx="0"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="0"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="0"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="0"/></svg><span>Grid</span></a>
     </nav>
   </div>
 </header>
 
 <main id="main">
   <section class="wrap classic-hero">
-    <h1 class="display">I design things people use, then watch where they get stuck.</h1>
+    <h1 class="display hero-title"><span>I</span> <span>design</span> <span>things</span> <span>people</span> <span>use,</span> <span>then</span> <span>watch</span> <span>where</span> <span>they</span> <span>get</span> <span>stuck.</span></h1>
     <p class="lede">I've been designing for real users since I was a kid building Minecraft maps for my best friend. Since then I've shipped Minecraft add-ons with 3.6M+ downloads, grown a YouTube channel to 64K+ subscribers, and designed a tactics game, a receipt-splitting app, and a startup's brand. These case studies show the mockups, the feedback, and the fixes behind each one.</p>
   </section>
 
@@ -34,40 +38,40 @@
       <h2 class="h2">Selected work</h2>
     </div>
     <div class="bento">
-      <a class="tile tile-ur theme-ur reveal" href="uncoded-resolve.html">
+      <a class="tile tile-ur theme-ur" href="uncoded-resolve.html">
         <div>
           <p class="eyebrow" style="color:#d868ee;margin-bottom:12px">Simultaneous-Turn Tactics UI</p>
           <h3>Uncoded Resolve</h3>
-          <p>The HUD, icons, and color system for a tactics game where both sides move at once, and the tutorial players couldn't close.</p>
+          <p>The HUD, icons, and colors for a tactics game, and the tutorial players couldn't close.</p>
         </div>
-        <div class="tile-img"><img src="assets/img/ur/final-combat-7.webp" alt="" width="1600" height="900"></div>
+        <div class="tile-img"><img src="assets/img/ur/final-combat-7.webp" alt="" width="1600" height="900"><svg class="tile-slant" viewBox="0 0 1000 22" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path class="cut" d="M0 0H1000V21L0 1.5Z"/><path class="line" d="M0 1.5L1000 21"/></svg></div>
         <span class="view">View case study</span>
       </a>
-      <a class="tile tile-ez theme-ez reveal" href="eezy-receipt.html">
+      <a class="tile tile-ez theme-ez" href="eezy-receipt.html">
         <div>
           <p class="eyebrow" style="color:#34d399;margin-bottom:12px">Mobile Usability Redesign</p>
           <h3>Eezy Receipt</h3>
           <p>A drag-only MVP testers couldn't figure out, redesigned into a split anyone can finish.</p>
         </div>
-        <div class="tile-img"><img src="assets/img/ez/screen-3.webp" alt="" width="1200" height="1200"></div>
+        <div class="tile-img"><img src="assets/img/ez/screen-3.webp" alt="" width="1200" height="1200"><svg class="tile-slant" viewBox="0 0 1000 22" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path class="cut" d="M0 0H1000V21L0 1.5Z"/><path class="line" d="M0 1.5L1000 21"/></svg></div>
         <span class="view">View case study</span>
       </a>
-      <a class="tile tile-hd theme-hd reveal" href="hedron.html">
+      <a class="tile tile-hd theme-hd" href="hedron.html">
         <div>
           <p class="eyebrow" style="color:#a9b9f2;margin-bottom:12px">B2B Workflow &amp; Brand Identity</p>
           <h3>Hedron³</h3>
           <p>A logo, business card, and a five-step guided workflow for the startup I co-founded.</p>
         </div>
-        <div class="tile-img"><img src="assets/img/hd/card-back.webp" alt="" width="1200" height="721"></div>
+        <div class="tile-img"><img src="assets/img/hd/card-back.webp" alt="" width="1200" height="721"><svg class="tile-slant" viewBox="0 0 1000 22" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path class="cut" d="M0 0H1000V21L0 1.5Z"/><path class="line" d="M0 1.5L1000 21"/></svg></div>
         <span class="view">View case study</span>
       </a>
-      <a class="tile tile-wc theme-wc reveal" href="warden-creations.html">
+      <a class="tile tile-wc theme-wc" href="warden-creations.html">
         <div>
           <p class="eyebrow" style="color:#ffc978;margin-bottom:12px">Game UX &amp; Distribution for 3.6M+ Players</p>
           <h3>Warden Creations</h3>
           <p>In-game tooltip UX, 17.7% peak CTR thumbnails, and shipping updates to 3.6M+ players.</p>
         </div>
-        <div class="tile-img"><img src="assets/img/yt/simple-arsenal.webp" alt="" width="960" height="540"></div>
+        <div class="tile-img"><img src="assets/img/yt/simple-arsenal.webp" alt="" width="960" height="540"><svg class="tile-slant" viewBox="0 0 1000 22" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path class="cut" d="M0 0H1000V21L0 1.5Z"/><path class="line" d="M0 1.5L1000 21"/></svg></div>
         <span class="view">View case study</span>
       </a>
     </div>
@@ -82,7 +86,7 @@
           <p>Most of my design sense comes from shipping to a large audience and reading what came back: 1,100+ comment replies, a 6,000-member Discord, and a running list of player suggestions that shaped every update. I care about elegant design: only what's necessary, grounded in conventions people already understand.</p>
           <p>I haven't studied in a design program or run a formal usability study yet. Learning those methods from experienced designers and researchers is what I want next.</p>
         </div>
-        <h3 style="margin-top:40px">Elsewhere</h3>
+        <h3 style="margin-top:40px">Contact</h3>
         <div class="contact-grid">
           <div class="contact-card c-email">
             <span class="contact-icon"><svg aria-hidden="true"><use href="assets/icons/sprite.svg?v=2#mail"/></svg></span>
@@ -106,8 +110,12 @@
           </div>
         </div>
       </div>
-      <div>
+      <div class="toolkit">
         <h3>Toolkit</h3>
+        <div class="toolkit-tip">
+          <p class="toolkit-note">Click these to see where I used them</p>
+          <svg class="toolkit-arrow" aria-hidden="true"><path/></svg>
+        </div>
         <div class="toolkit-groups">
           <div class="toolkit-group">
             <h4>Languages &amp; Web Basics</h4>
@@ -115,7 +123,7 @@
               <a class="tool-chip" href="?skill=C%2B%2B#coursework"><svg class="chip-icon" aria-hidden="true"><use href="assets/icons/sprite.svg?v=2#cplusplus"/></svg> C++</a>
               <a class="tool-chip" href="?skill=C%23#cable-conundrum"><svg class="chip-icon" aria-hidden="true"><use href="assets/icons/sprite.svg?v=2#dotnet"/></svg> C#</a>
               <a class="tool-chip" href="?skill=Java#coursework"><svg class="chip-icon" aria-hidden="true"><use href="assets/icons/sprite.svg?v=2#openjdk"/></svg> Java</a>
-              <a class="tool-chip" href="eezy-receipt.html?skill=TypeScript#engineering"><svg class="chip-icon" aria-hidden="true"><use href="assets/icons/sprite.svg?v=2#typescript"/></svg> TypeScript</a>
+              <a class="tool-chip" href="eezy-receipt.html?skill=TypeScript#engineering" data-tip-target><svg class="chip-icon" aria-hidden="true"><use href="assets/icons/sprite.svg?v=2#typescript"/></svg> TypeScript</a>
               <a class="tool-chip" href="hedron.html?skill=JavaScript#tools"><svg class="chip-icon" aria-hidden="true"><use href="assets/icons/sprite.svg?v=2#javascript"/></svg> JavaScript</a>
               <a class="tool-chip" href="?skill=Python#coursework"><svg class="chip-icon" aria-hidden="true"><use href="assets/icons/sprite.svg?v=2#python"/></svg> Python</a>
               <a class="tool-chip" href="?skill=Swift#daily-nexus"><svg class="chip-icon" aria-hidden="true"><use href="assets/icons/sprite.svg?v=2#swift"/></svg> Swift</a>
@@ -225,7 +233,7 @@
     </div>
     <div class="impact-banners">
       <!-- Uncoded Resolve 1 -->
-      <a class="banner theme-ur reveal" href="uncoded-resolve.html#tutorial">
+      <a class="banner theme-ur" href="uncoded-resolve.html#tutorial">
         <div class="banner-img"><img src="assets/img/ur/tutorial-after.webp" alt="Labeled SPACE Continue button replacing small X" loading="lazy" width="800" height="450"></div>
         <div class="banner-content">
           <div class="banner-eyebrow">Uncoded Resolve · Usability Fix</div>
@@ -236,7 +244,7 @@
       </a>
 
       <!-- Uncoded Resolve 2 -->
-      <a class="banner theme-ur reveal" href="uncoded-resolve.html#layout">
+      <a class="banner theme-ur" href="uncoded-resolve.html#layout">
         <div class="banner-img"><img src="assets/img/ur/hud-v2-annotated.webp" alt="Annotated combat HUD regions" loading="lazy" width="800" height="450"></div>
         <div class="banner-content">
           <div class="banner-eyebrow">Uncoded Resolve · Information Architecture</div>
@@ -247,7 +255,7 @@
       </a>
 
       <!-- Eezy Receipt 1 -->
-      <a class="banner theme-ez reveal" href="eezy-receipt.html#redesign">
+      <a class="banner theme-ez" href="eezy-receipt.html#redesign">
         <div class="banner-img"><img src="assets/img/ez/screen-3.webp" alt="Redesigned receipt room with Claim items button" loading="lazy" width="800" height="450"></div>
         <div class="banner-content">
           <div class="banner-eyebrow">Eezy Receipt · Interaction Redesign</div>
@@ -258,7 +266,7 @@
       </a>
 
       <!-- Hedron3 1 -->
-      <a class="banner theme-hd reveal" href="hedron.html#workflow">
+      <a class="banner theme-hd" href="hedron.html#workflow">
         <div class="banner-img"><img src="assets/img/hd/flow-step-5.webp" alt="Progressive five-step workflow mockup" loading="lazy" width="800" height="450"></div>
         <div class="banner-content">
           <div class="banner-eyebrow">Hedron³ · Workflow Architecture</div>
@@ -269,7 +277,7 @@
       </a>
 
       <!-- Warden Creations 1 -->
-      <a class="banner theme-wc reveal" href="warden-creations.html#tooltips">
+      <a class="banner theme-wc" href="warden-creations.html#tooltips">
         <div class="banner-img"><img src="assets/img/yt/simple-arsenal.webp" alt="In-game weapon stats and tooltip badges" loading="lazy" width="800" height="450"></div>
         <div class="banner-content">
           <div class="banner-eyebrow">Warden Creations · In-Game UX</div>
@@ -280,7 +288,7 @@
       </a>
 
       <!-- Warden Creations 2 -->
-      <a class="banner theme-wc reveal" href="warden-creations.html#flops">
+      <a class="banner theme-wc" href="warden-creations.html#flops">
         <div class="banner-img"><img src="assets/img/wc/copper-golem.webp" alt="Copper Golem add-on cover art" loading="lazy" width="500" height="500"></div>
         <div class="banner-content">
           <div class="banner-eyebrow">Warden Creations · Retrospective</div>
@@ -300,6 +308,7 @@
     <span class="credit">Layout and the talk-to-my-portfolio idea are inspired by <a href="https://www.studio-nikita.com/" target="_blank" rel="noopener noreferrer">Studio Nikita</a> by Nikita Rochiramani (<a href="https://www.awwwards.com/sites/studio-nikita" target="_blank" rel="noopener noreferrer">Awwwards nominee</a>).</span>
   </div>
 </footer>
-<script src="assets/site.js?v=20260927a"></script>
+<script src="assets/site.js?v=20260929f"></script>
+<div id="page-end" hidden></div>
 </body>
 </html>

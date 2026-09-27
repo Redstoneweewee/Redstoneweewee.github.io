@@ -1,4 +1,4 @@
-// Shared page behavior: theme toggle, scroll reveals, view persistence, back button, skill highlights.
+// Shared page behavior: theme toggle, case study banner, view persistence, back button, skill highlights, page slides.
 (function () {
   var root = document.documentElement;
   var reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -193,43 +193,87 @@
     flashSkill();
   });
 
-  // ---------- Toolkit tip (once per browser session) ----------
-  // The first time the About toolkit scrolls into view, the chips ripple and a tip explains
-  // that each one jumps to where the skill is used.
+  // ---------- Toolkit tip ----------
+  // The first time the About toolkit scrolls into view, the margin note fades in and the TypeScript chip pulses.
+  // After that the note stays for the rest of the session (coming back from a case study shows it at
+  // once, without replaying); a refresh clears it so both play again.
   var toolkit = document.querySelector(".toolkit-groups");
-  if (toolkit && !load("portfolio_toolkit_tip") && "IntersectionObserver" in window) {
-    var tipWatch = new IntersectionObserver(function (entries) {
-      if (!entries[0].isIntersecting) return;
-      tipWatch.disconnect();
-      store("portfolio_toolkit_tip", "1");
-      showToolkitTip();
-    }, { threshold: 0.6 });
-    tipWatch.observe(toolkit);
+  var toolkitTip = document.querySelector(".toolkit-tip");
+  if (toolkit && toolkitTip) {
+    drawTipArrow();
+    if ("ResizeObserver" in window) new ResizeObserver(drawTipArrow).observe(toolkit.parentNode);
+    if (document.fonts) document.fonts.ready.then(drawTipArrow);
+
+    var nav = performance.getEntriesByType ? performance.getEntriesByType("navigation")[0] : null;
+    if (nav && nav.type === "reload") drop("portfolio_toolkit_tip");
+    if (load("portfolio_toolkit_tip") || !("IntersectionObserver" in window)) {
+      toolkitTip.classList.add("in", "shown");
+    } else {
+      var tipWatch = new IntersectionObserver(function (entries) {
+        if (!entries[0].isIntersecting) return;
+        tipWatch.disconnect();
+        store("portfolio_toolkit_tip", "1");
+        showToolkitTip();
+      }, { threshold: 0.6 });
+      tipWatch.observe(toolkit);
+    }
   }
 
   function showToolkitTip() {
-    toolkit.querySelectorAll(".tool-chip").forEach(function (chip, i) { chip.style.setProperty("--i", i); });
-    toolkit.classList.add("chips-hint");
-    setTimeout(function () { toolkit.classList.remove("chips-hint"); }, 3000);
+    toolkitTip.classList.add("in");
+    var chip = toolkit.querySelector("[data-tip-target]");
+    if (!chip) return;
+    chip.classList.add("tip-pulse");
+    setTimeout(function () { chip.classList.remove("tip-pulse"); }, 3200);
+  }
 
-    var tip = document.createElement("div");
-    tip.className = "coach-toast";
-    tip.setAttribute("role", "status");
-    tip.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 14a8 8 0 0 1-8 8"/><path d="M18 11v-1a2 2 0 0 0-4 0"/><path d="M14 10V9a2 2 0 0 0-4 0v1"/><path d="M10 9.5V4a2 2 0 0 0-4 0v10"/><path d="M18 11a2 2 0 1 1 4 0v3a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-6-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg>'
-      + "<p><b>Tip:</b> click any skill to jump to the part of my work where I used it.</p>"
-      + '<button type="button">Got it</button>';
-    document.body.appendChild(tip);
-    requestAnimationFrame(function () { tip.classList.add("in"); });
+  // Places the note, then draws a straight arrow from its bottom middle, aimed at the center of the target
+  // chip and stopping where it would enter the chip (plus a small gap), so it always lands on it.
+  // It runs on load and resize, before and after the chip pulse.
+  function drawTipArrow() {
+    var note = toolkitTip.querySelector(".toolkit-note");
+    var path = toolkitTip.querySelector(".toolkit-arrow path");
+    var chip = toolkit.querySelector("[data-tip-target]");
+    if (!note || !path || !chip) return;
+    var col = toolkit.parentNode;
+    var box = col.getBoundingClientRect();
+    var c = chip.getBoundingClientRect();
 
-    var timer = setTimeout(hide, 10000);
-    function hide() {
-      clearTimeout(timer);
-      tip.classList.remove("in");
-      setTimeout(function () { tip.remove(); }, 400);
-      toolkit.removeEventListener("click", hide);
+    // Center the note about 100px right of the chip, kept inside the column and clear of the heading
+    // text beside it; it only wraps if even that space is too narrow.
+    var heading = col.querySelector("h3");
+    var text = document.createRange();
+    text.selectNodeContents(heading);
+    var minLeft = text.getBoundingClientRect().right - box.left + 16;
+    note.style.whiteSpace = "";
+    note.style.maxWidth = "";
+    var w = note.offsetWidth, room = col.clientWidth - minLeft;
+    if (w > room) {
+      note.style.whiteSpace = "normal";
+      note.style.maxWidth = room + "px";
+      w = note.offsetWidth;
     }
-    tip.querySelector("button").addEventListener("click", hide);
-    toolkit.addEventListener("click", hide);
+    var left = c.left - box.left + c.width / 2 + 100 - w / 2;
+    left = Math.max(minLeft, Math.min(left, col.clientWidth - w));
+    note.style.left = left + "px";
+    note.style.right = "auto";
+
+    var n = note.getBoundingClientRect();
+    var x1 = n.left + n.width / 2 - box.left, y1 = n.bottom - box.top + 8;
+    var cx = c.left + c.width / 2 - box.left, cy = c.top + c.height / 2 - box.top;
+    var dx = cx - x1, dy = cy - y1, gap = 6;
+    // Entry point into the chip's box grown by the gap (slab method)
+    var tx = dx ? (dx - Math.sign(dx) * (c.width / 2 + gap)) / dx : 0;
+    var ty = dy ? (dy - Math.sign(dy) * (c.height / 2 + gap)) / dy : 0;
+    var t = Math.max(tx, ty);
+    var x2 = x1 + dx * t, y2 = y1 + dy * t;
+    if (t <= 0 || Math.hypot(x2 - x1, y2 - y1) < 14) { path.setAttribute("d", ""); return; }
+    var a = Math.atan2(dy, dx), head = 11, spread = Math.PI / 5;
+    var hx1 = x2 - head * Math.cos(a - spread), hy1 = y2 - head * Math.sin(a - spread);
+    var hx2 = x2 - head * Math.cos(a + spread), hy2 = y2 - head * Math.sin(a + spread);
+    function f(v) { return v.toFixed(1); }
+    path.setAttribute("d", "M" + f(x1) + " " + f(y1) + "L" + f(x2) + " " + f(y2)
+      + "M" + f(hx1) + " " + f(hy1) + "L" + f(x2) + " " + f(y2) + "L" + f(hx2) + " " + f(hy2));
   }
 
   // ---------- Looping videos (animated GIF replacements) ----------
@@ -291,17 +335,59 @@
     });
   });
 
-  // ---------- Scroll reveals ----------
-  var els = document.querySelectorAll(".reveal");
-  if ("IntersectionObserver" in window && !reduceMotion) {
-    root.classList.add("js");
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
-      });
-    }, { rootMargin: "0px 0px -8% 0px" });
-    els.forEach(function (el) { io.observe(el); });
+  // ---------- Case study banner: fades into the page as you scroll ----------
+  // Writes scroll progress (0 at the top, 1 once the banner has scrolled past) to --p; style.css does the fade.
+  var banner = document.querySelector(".cs-banner");
+  if (banner && !reduceMotion) {
+    var ticking = false;
+    var update = function () {
+      ticking = false;
+      var p = Math.min(Math.max(window.scrollY / banner.offsetHeight, 0), 1);
+      banner.style.setProperty("--p", p.toFixed(3));
+    };
+    window.addEventListener("scroll", function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }, { passive: true });
+    update();
   }
+
+  // ---------- Page slides (style.css, "Page slides") ----------
+  // The site is one row of pages: Ask me, Grid, then the case studies in "Next case study" order. Moving right
+  // along the row slides the new page in from the right; moving left, from the left. The case studies loop
+  // (the last one's "Next" is the first), so each one's neighbors are a single step away in either direction.
+  var ROW = ["", "work.html", "uncoded-resolve.html", "eezy-receipt.html", "hedron.html", "warden-creations.html"];
+  var FIRST_CASE = 2, CASE_COUNT = ROW.length - FIRST_CASE;
+  function place(url) {
+    var file = new URL(url, location.href).pathname.split("/").pop();
+    return ROW.indexOf(file === "index.html" ? "" : file);
+  }
+  function slideDirection(from, to) {
+    if (from >= FIRST_CASE && to >= FIRST_CASE) {
+      var step = (to - from + CASE_COUNT) % CASE_COUNT;
+      if (step === 1) return "forward";
+      if (step === CASE_COUNT - 1) return "back";
+    }
+    return to > from ? "forward" : "back";
+  }
+
+  // Each word of the shared Ask me / Grid title flies to its new spot, but only when the title is on screen as
+  // the page is left; otherwise the words ride along with the sliding page.
+  window.addEventListener("pageswap", function (e) {
+    var title = document.querySelector(".hero-title");
+    if (!e.viewTransition || !title) return;
+    var r = title.getBoundingClientRect();
+    title.classList.toggle("vt-off", !title.offsetParent || r.bottom < 0 || r.top > window.innerHeight);
+  });
+  window.addEventListener("pagereveal", function (e) {
+    if (!e.viewTransition) return;
+    var fromUrl = "";
+    try { fromUrl = navigation.activation.from.url; } catch (err) {}
+    var from = place(fromUrl || document.referrer || location.href), to = place(location.href);
+    // A page linking to itself (the brand link) has nowhere to slide to.
+    if (from < 0 || to < 0 || from === to) { e.viewTransition.skipTransition(); return; }
+    root.dataset.slide = slideDirection(from, to);
+    e.viewTransition.finished.then(function () { delete root.dataset.slide; }, function () { delete root.dataset.slide; });
+  });
 
   // Open all external links in a new tab with secure rel
   function ensureExternalLinks() {

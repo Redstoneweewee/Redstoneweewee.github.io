@@ -2,6 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name="color-scheme" content="light dark">
+  <!-- Match the page canvas before external CSS arrives, including during navigation. -->
+  <style>
+    html { background: #f6f5f1; }
+    @media (prefers-color-scheme: dark) { html { background: #0d0d10; } }
+  </style>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Leifeng Chen · Design Portfolio</title>
   <meta name="description" content="Leifeng Chen designs and builds interfaces. Ask the portfolio about his case studies, process, and the mistakes he learned from.">
@@ -16,7 +22,7 @@
   <link rel="icon" type="image/webp" href="assets/img/me.webp?v=20260925c">
   <link rel="shortcut icon" type="image/webp" href="assets/img/me.webp?v=20260925c">
   <link rel="apple-touch-icon" href="assets/img/me.webp?v=20260925c">
-  <link rel="stylesheet" href="assets/style.css?v=20260929q">
+  <link rel="stylesheet" href="assets/style.css?v=20260929s">
   <!-- Pages slide into each other in site order (style.css, "Page slides") -->
   <style>@media (prefers-reduced-motion: no-preference) { @view-transition { navigation: auto; } }</style>
   <!-- Hold the first frame until #page-end (after the scripts) is parsed, so the slide starts from the finished page -->
@@ -38,7 +44,6 @@
   <section class="intro" id="intro">
     <h1 class="display hero-title"><span>I</span> <span>design</span> <span>things</span> <span>people</span> <span>use,</span><br> <span>then</span> <span>watch</span> <span>where</span> <span>they</span> <span>get</span> <span>stuck.</span></h1>
     <div class="guide">
-      <h2>Try asking</h2>
       <div id="starters"></div>
     </div>
     <p class="small" style="margin-top:26px">Prefer to browse? <a href="work.html">Switch to the grid view</a>.</p>

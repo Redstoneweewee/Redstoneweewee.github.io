@@ -2,6 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name="color-scheme" content="light dark">
+  <!-- Match the page canvas before external CSS arrives, including during navigation. -->
+  <style>
+    html { background: #f6f5f1; }
+    @media (prefers-color-scheme: dark) { html { background: #0d0d10; } }
+  </style>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Eezy Receipt · Leifeng Chen</title>
   <meta name="description" content="Case study: redesigning a receipt-splitting app after testers couldn't figure out how to claim items.">
@@ -9,7 +15,7 @@
   <link rel="icon" type="image/webp" href="assets/img/me.webp?v=20260925c">
   <link rel="shortcut icon" type="image/webp" href="assets/img/me.webp?v=20260925c">
   <link rel="apple-touch-icon" href="assets/img/me.webp?v=20260925c">
-  <link rel="stylesheet" href="assets/style.css?v=20260929q">
+  <link rel="stylesheet" href="assets/style.css?v=20260929s">
   <!-- Pages slide into each other in site order (style.css, "Page slides") -->
   <style>@media (prefers-reduced-motion: no-preference) { @view-transition { navigation: auto; } }</style>
   <!-- Hold the first frame until #page-end (after the scripts) is parsed, so the slide starts from the finished page -->
